@@ -1,0 +1,2783 @@
+<!-- ... existing code ... -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISSUE #01: LEOU HASAN — Cyber-Comic Portfolio & Retro Arcade</title>
+
+  <!-- Google Fonts: Bangers (Comic Display), Comic Neue (Readable Comic Body), Space Mono (Tech/Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            comic: ['"Bangers"', 'cursive', 'sans-serif'],
+            body: ['"Comic Neue"', 'cursive', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          },
+          colors: {
+            cream: '#FAF3E0',
+            ink: '#121216',
+            popCyan: '#00E5FF',
+            popPink: '#FF1E6E',
+            popYellow: '#FFD000',
+            popLime: '#B8FF00',
+            popPurple: '#2B1966',
+            popGreen: '#00E676',
+          },
+          boxShadow: {
+            comic: '6px 6px 0px var(--ink)',
+            comicLg: '11px 11px 0px var(--ink)',
+            comicSm: '3px 3px 0px var(--ink)',
+            cmyk: '-4px -4px 0px #00E5FF, 4px 4px 0px #FF1E6E, 9px 9px 0px var(--ink)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ==========================================================================
+       LIVING COMIC ZINE & RISOGRAPH POP-ART STYLES
+       ========================================================================== */
+    :root {
+      --ink: #121216;
+      --paper: #FAF3E0;
+      --panel-bg: #FFFFFF;
+      --text-main: #121216;
+      --text-muted: #27272A;
+      --cyan: #00E5FF;
+      --pink: #FF1E6E;
+      --yellow: #FFD000;
+      --lime: #B8FF00;
+      --indigo: #2B1966;
+    }
+
+    /* Midnight Neon Ink Mode (Spider-Verse Dark Dimension) */
+    body.midnight-mode {
+      --ink: #00E5FF;
+      --paper: #0B0A14;
+      --panel-bg: #151326;
+      --text-main: #FAF3E0;
+      --text-muted: #D4D4D8;
+    }
+
+    body {
+      background-color: var(--paper);
+      color: var(--text-main);
+      font-family: 'Comic Neue', cursive, sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
+
+    /* CMYK Chromatic Aberration / Misprint Text Effect */
+    .comic-title {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.04em;
+      text-shadow: -2px -2px 0px #00E5FF, 2px 2px 0px #FF1E6E, 5px 5px 0px #121216;
+      -webkit-text-stroke: 1.5px #121216;
+    }
+
+    .comic-title-sm {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.03em;
+      text-shadow: 2px 2px 0px #121216;
+    }
+
+    /* Animated Radial Speed-Lines behind Hero */
+    @keyframes spinSlow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .speed-lines-burst {
+      background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 208, 0, 0.22) 0deg 6deg,
+        transparent 6deg 15deg,
+        rgba(0, 229, 255, 0.16) 15deg 20deg,
+        transparent 20deg 30deg
+      );
+      animation: spinSlow 48s linear infinite;
+    }
+
+
+    /* Skill-card titles: comic label strips in each card's header color */
+    .skill-title {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+    }
+    .skill-title > span {
+      background: var(--hl);
+      color: var(--hl-text, #121216);
+      padding: 0.05em 0.45em;
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      text-shadow: none;
+    }
+
+    /* Halftone Overlay Patterns */
+    .halftone-cyan {
+      background-color: #00E5FF;
+      background-image: radial-gradient(#12121638 1.8px, transparent 1.8px);
+      background-size: 11px 11px;
+    }
+
+    .halftone-yellow {
+      background-color: #FFD000;
+      background-image: radial-gradient(#1212162e 1.8px, transparent 1.8px);
+      background-size: 11px 11px;
+    }
+
+    .halftone-pink {
+      background-color: #FF1E6E;
+      background-image: radial-gradient(#12121638 1.8px, transparent 1.8px);
+      background-size: 11px 11px;
+    }
+
+    .halftone-lime {
+      background-color: #B8FF00;
+      background-image: radial-gradient(#12121633 1.8px, transparent 1.8px);
+      background-size: 11px 11px;
+    }
+
+    .halftone-indigo {
+      background-color: #2B1966;
+      background-image: radial-gradient(#00E5FF33 1.8px, transparent 1.8px);
+      background-size: 11px 11px;
+    }
+
+    /* Dynamic Panel Surface */
+    .panel-surface {
+      background-color: var(--panel-bg);
+      color: var(--text-main);
+    }
+
+    /* Comic Panel Frame with CMYK Offset Option */
+    .comic-panel {
+      border: 4px solid #121216;
+      box-shadow: 8px 8px 0px #121216;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+    }
+
+    body.midnight-mode .comic-panel {
+      border-color: #00E5FF;
+      box-shadow: -3px -3px 0px #FF1E6E, 7px 7px 0px #00E5FF;
+    }
+
+    .comic-panel-interactive:hover {
+      transform: translate(-4px, -4px) rotate(-0.5deg);
+      box-shadow: -3px -3px 0px #00E5FF, 11px 11px 0px #FF1E6E, 14px 14px 0px #121216;
+    }
+
+    /* Diagonal Comic Storyboard Clip-Paths (Desktop) */
+    @media (min-width: 1024px) {
+      .clip-slash-right {
+        clip-path: polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+      }
+      .clip-slash-left {
+        clip-path: polygon(4% 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    }
+
+    /* 3D Holo-Foil Comic Cover Card */
+    .holo-card-wrapper {
+      perspective: 1100px;
+    }
+
+    .holo-card {
+      transform-style: preserve-3d;
+      /* Transform is driven by a JS lerp loop (mouse + gyroscope), so no CSS transition on it */
+      transition: box-shadow 0.22s ease;
+      will-change: transform;
+      position: relative;
+      touch-action: pan-y;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .holo-shimmer {
+      background: linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(0, 229, 255, 0.35) 38%,
+        rgba(255, 30, 110, 0.35) 50%,
+        rgba(184, 255, 0, 0.35) 62%,
+        transparent 80%
+      );
+      background-size: 240% 240%;
+      mix-blend-mode: color-dodge;
+      pointer-events: none;
+    }
+
+    /* Arcade screen: fixed logical resolution, correct aspect ratio per device */
+    .arcade-frame {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      width: min(100%, calc(78vh * 1.6), 800px);
+      width: min(100%, calc(78dvh * 1.6), 800px);
+      margin: 0 auto;
+    }
+    .arcade-frame.portrait {
+      aspect-ratio: 3 / 4;
+      width: min(100%, calc(68vh * 0.75), 440px);
+      width: min(100%, calc(68dvh * 0.75), 440px);
+    }
+    .arcade-frame { min-height: 0; overflow: hidden; }
+    #arcadeCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+    .arcade-btn { touch-action: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; user-select: none; }
+
+    /* Comic Button */
+    .comic-btn {
+      border: 3px solid #121216;
+      box-shadow: 5px 5px 0px #121216;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    body.midnight-mode .comic-btn {
+      border-color: #00E5FF;
+      box-shadow: 4px 4px 0px #FF1E6E;
+    }
+
+    .comic-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #121216;
+    }
+
+    body.midnight-mode .comic-btn:hover {
+      box-shadow: 6px 6px 0px #00E5FF;
+    }
+
+    .comic-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0px #121216;
+    }
+
+    /* Speech Bubble */
+    .speech-bubble {
+      position: relative;
+      background: #FFFFFF;
+      color: #121216;
+      border: 4px solid #121216;
+      border-radius: 24px;
+      box-shadow: 6px 6px 0px #121216;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -22px;
+      left: 38px;
+      border-width: 22px 22px 0 0;
+      border-style: solid;
+      border-color: #121216 transparent transparent transparent;
+    }
+
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 42px;
+      border-width: 16px 16px 0 0;
+      border-style: solid;
+      border-color: #FFFFFF transparent transparent transparent;
+      z-index: 1;
+    }
+
+    /* Jagged Action Burst Badge */
+    .action-burst {
+      clip-path: polygon(
+        50% 0%, 63% 14%, 82% 5%, 83% 25%, 100% 28%, 89% 46%, 100% 64%,
+        82% 70%, 85% 90%, 65% 84%, 54% 100%, 40% 85%, 20% 93%, 23% 73%,
+        3% 68%, 15% 50%, 2% 32%, 21% 26%, 19% 6%, 38% 15%
+      );
+    }
+
+    /* Floating Onomatopoeia Popup */
+    @keyframes popFloat {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-18deg) translateY(0px);
+      }
+      25% {
+        opacity: 1;
+        transform: scale(1.25) rotate(8deg) translateY(-14px);
+      }
+      65% {
+        opacity: 1;
+        transform: scale(1) rotate(-4deg) translateY(-32px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.9) rotate(6deg) translateY(-54px);
+      }
+    }
+
+    .onomatopoeia-popup {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-family: 'Bangers', cursive;
+      font-size: 1.95rem;
+      letter-spacing: 0.05em;
+      padding: 2px 14px;
+      border: 3px solid #121216;
+      box-shadow: 4px 4px 0px #121216;
+      animation: popFloat 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Arcade CRT Scanlines Overlay */
+    .crt-scanlines {
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.22) 50%
+      );
+      background-size: 100% 4px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--paper);
+      border-left: 3px solid #121216;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FFD000;
+      border: 3px solid #121216;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF1E6E;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-popYellow selection:text-ink relative">
+
+  <!-- ========================================================================
+       LAYER 0: FULL-SCREEN INTERACTIVE BEN-DAY HALFTONE & GLYPH CANVAS
+       ======================================================================== -->
+  <canvas id="bgComicCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- ========================================================================
+       LAYER 1: TACTILE SVG NEWSPRINT PAPER GRAIN OVERLAY
+       ======================================================================== -->
+  <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.045] mix-blend-multiply">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <filter id="paperGrainFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#paperGrainFilter)" />
+    </svg>
+  </div>
+
+  <!-- ========================================================================
+       TOP COLLECTOR'S ISSUE HEADER & MULTIVERSE HUD
+       ======================================================================== -->
+  <header class="sticky top-0 z-50 panel-surface/95 md:backdrop-blur-md border-b-4 border-ink transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- Comic Issue Price & Barcode Stamp -->
+      <a href="#origin" onclick="triggerPop(event, 'EXCELSIO!')" class="flex items-center gap-3 group">
+        <div class="bg-popYellow text-ink border-3 border-ink px-2.5 py-1 shadow-comicSm -rotate-3 group-hover:rotate-0 transition-transform">
+          <span class="font-mono font-bold text-xs tracking-tighter block leading-none">VOL. 01</span>
+          <span class="font-mono text-[10px] font-bold block leading-none mt-0.5 bg-ink text-popLime px-1">FREE PLAY</span>
+        </div>
+        <div>
+          <span class="font-comic text-2xl sm:text-3xl tracking-wider group-hover:text-popPink transition-colors">
+            LEOU HASAN
+          </span>
+          <span class="hidden lg:inline-block ml-2 bg-popLime text-ink border-2 border-ink px-2 py-0.5 font-mono text-[11px] font-bold shadow-comicSm rotate-1">
+            CSE &amp; ARCADE ZINE
+          </span>
+        </div>
+      </a>
+
+      <!-- Navigation Links + Ink Mode Switcher + SFX -->
+      <nav class="flex flex-wrap items-center gap-1.5 sm:gap-2.5">
+        <a href="#origin" onclick="triggerPop(event, 'COVER!')" class="comic-btn bg-white text-ink hover:bg-popYellow px-2.5 sm:px-3 py-1 font-comic text-sm sm:text-lg tracking-wide rounded-lg">
+          COVER
+        </a>
+        <a href="#powers" onclick="triggerPop(event, 'DECK!')" class="comic-btn bg-white text-ink hover:bg-popCyan px-2.5 sm:px-3 py-1 font-comic text-sm sm:text-lg tracking-wide rounded-lg">
+          POWERS
+        </a>
+        <a href="#missions" onclick="triggerPop(event, 'ISSUES!')" class="comic-btn bg-white text-ink hover:bg-popPink hover:text-white px-2.5 sm:px-3 py-1 font-comic text-sm sm:text-lg tracking-wide rounded-lg">
+          MISSIONS
+        </a>
+        <a href="#arcade" onclick="triggerPop(event, '1UP!')" class="comic-btn bg-popLime text-ink hover:bg-popYellow px-2.5 sm:px-3 py-1 font-comic text-sm sm:text-lg tracking-wide rounded-lg flex items-center gap-1">
+          <span>🕹️</span> ARCADE
+        </a>
+        <a href="#signal" onclick="triggerPop(event, 'ZAP!')" class="comic-btn bg-popPink text-white hover:bg-popPurple px-2.5 sm:px-3 py-1 font-comic text-sm sm:text-lg tracking-wide rounded-lg">
+          SIGNAL
+        </a>
+
+        <!-- Daylight Newsprint vs Midnight Neon Ink Toggle -->
+        <button
+          id="themeToggleBtn"
+          onclick="toggleInkTheme(event)"
+          title="Switch between Daylight Newsprint and Midnight Neon Ink"
+          class="comic-btn bg-popPurple text-popCyan px-2.5 sm:px-3 py-1 font-mono text-xs font-bold rounded-lg flex items-center gap-1.5"
+        >
+          <span id="themeIcon">🌙</span>
+          <span id="themeLabel" class="hidden md:inline">NEON INK</span>
+        </button>
+
+        <!-- Sound Toggle Button -->
+        <button
+          id="soundToggleBtn"
+          onclick="toggleSound(event)"
+          title="Toggle Retro Comic & Arcade SFX"
+          class="comic-btn bg-ink text-popYellow px-2.5 sm:px-3 py-1 font-mono text-xs font-bold rounded-lg flex items-center gap-1"
+        >
+          <span id="soundIcon">🔊</span>
+          <span id="soundLabel" class="hidden sm:inline">SFX</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-20 sm:space-y-28">
+
+    <!-- ======================================================================
+         SPREAD 1: COLLECTOR'S COVER SPLASH PAGE ("THE ORIGIN OF LEOU HASAN")
+         ====================================================================== -->
+    <section id="origin" class="relative">
+      <!-- Radial Speed Lines Burst Behind Splash -->
+      <div class="speed-lines-burst pointer-events-none absolute top-1/2 left-1/2 w-[140vw] h-[140vw] max-w-[1200px] max-h-[1200px] rounded-full opacity-70 -z-10"></div>
+
+      <!-- Top Collector's Marquee Ribbon -->
+      <div class="bg-ink text-popYellow border-4 border-ink px-4 py-2 mb-6 flex flex-wrap items-center justify-between gap-2 shadow-cmyk -rotate-[0.5deg]">
+        <span class="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase">
+          ★ COLLECTOR'S FIRST EDITION // MULTIVERSE CODE &amp; HARDWARE ZINE ★
+        </span>
+        <span class="font-mono text-xs bg-popLime text-ink px-2.5 py-0.5 font-bold border border-ink">
+          MOVE CURSOR TO WARP HALFTONE MATRIX!
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Left Storyboard Panel (7 Cols) -->
+        <div class="lg:col-span-7 comic-panel panel-surface p-6 sm:p-10 rounded-2xl relative overflow-hidden flex flex-col justify-between">
+          <!-- Jagged Action Burst Sticker -->
+          <div class="hidden sm:flex action-burst bg-popLime w-32 h-32 items-center justify-center absolute -top-5 -right-5 rotate-12">
+            <span class="font-comic text-2xl text-ink tracking-wider -rotate-12">THWIP!</span>
+          </div>
+
+          <div>
+            <!-- Narrator Yellow Caption Box -->
+            <div class="inline-block bg-popYellow text-ink border-3 border-ink px-3.5 py-1.5 shadow-comicSm mb-5 -rotate-1">
+              <span class="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
+                MEANWHILE, IN THE DIGITAL MULTIVERSE...
+              </span>
+            </div>
+
+            <!-- Editable Hero Alias Tag -->
+            <div class="mb-3 flex flex-wrap items-center gap-2">
+              <span class="bg-popPink text-white font-mono text-xs font-bold px-2.5 py-1 border-2 border-ink rounded">
+                HERO ALIAS:
+              </span>
+              <span
+                id="heroAliasDisplay"
+                contenteditable="true"
+                title="Click to customize hero name!"
+                class="font-mono text-sm font-bold bg-popCyan text-ink border-2 border-ink px-2.5 py-0.5 rounded cursor-text focus:outline-none"
+              >LEOU HASAN</span>
+              <span class="font-mono text-[11px] opacity-75">(click name to edit!)</span>
+            </div>
+
+            <h1 class="comic-title text-5xl sm:text-7xl lg:text-[5.2rem] leading-[0.94] text-popYellow mb-6">
+              CSE <span class="text-popPink">ARCHITECT</span>, IOT <span class="text-popCyan">INVENTOR</span> &amp; ARCADE <span class="text-popLime">CREATOR!</span>
+            </h1>
+
+            <!-- Comic Speech Bubble -->
+            <div class="speech-bubble p-5 sm:p-6 mb-10 max-w-2xl">
+              <p class="font-body font-bold text-lg sm:text-xl text-ink leading-snug">
+                "Armed with C++ compilers, Arduino microcontrollers, GSM transceivers, and HTML5 Canvas engines, I turn wild ideas into tactile hardware and playful web worlds. Flip the cover or insert a coin below!"
+              </p>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-1">
+            <a
+              href="#arcade"
+              onclick="triggerPop(event, 'INSERT COIN!')"
+              class="comic-btn bg-popLime hover:bg-popYellow text-ink font-comic text-2xl sm:text-3xl px-6 py-3 rounded-xl flex items-center gap-2"
+            >
+              <span>🕹️</span> ENTER ARCADE CABINET
+            </a>
+            <a
+              href="#missions"
+              onclick="triggerPop(event, 'WHOOSH!')"
+              class="comic-btn bg-popCyan hover:bg-popPink hover:text-white text-ink font-comic text-2xl sm:text-3xl px-6 py-3 rounded-xl flex items-center gap-2"
+            >
+              <span>📖</span> EXPLORE MISSIONS
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Interactive 3D Holo-Foil Comic Cover Card (5 Cols) -->
+        <div class="lg:col-span-5 holo-card-wrapper">
+          <div
+            id="holoCoverCard"
+            onclick="triggerPop(event, 'HOLO-FOIL!')"
+            class="holo-card comic-panel halftone-yellow p-5 sm:p-6 rounded-2xl cursor-pointer select-none overflow-hidden"
+          >
+            <!-- Holographic Rainbow Shimmer Overlay -->
+            <div id="holoShimmer" class="holo-shimmer absolute inset-0 z-20 opacity-0 transition-opacity duration-200"></div>
+
+            <!-- Comic Book Top Masthead -->
+            <div class="bg-ink text-white border-3 border-ink px-3 py-2 rounded-xl flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="bg-popPink text-white font-comic text-lg px-2 py-0.5 rounded">ISSUE #01</span>
+                <span class="font-mono text-xs text-popCyan font-bold">NOV 2026</span>
+              </div>
+              <span class="font-mono text-xs bg-popYellow text-ink font-bold px-2 py-0.5 rounded">
+                PRICE: 100% PASSION
+              </span>
+            </div>
+
+            <!-- Custom Cyber-Comic Hero Cover Illustration -->
+            <div class="bg-white border-4 border-ink rounded-2xl p-3 shadow-comic relative overflow-hidden">
+              <!-- Corner Action Star -->
+              <div class="absolute top-2 right-2 bg-popPink text-white font-comic text-base px-2.5 py-0.5 border-2 border-ink rotate-6 shadow-comicSm z-10">
+                TILT ME! 3D
+              </div>
+
+              <!-- Gyro permission button (only shown on touch devices that need a permission, e.g. iPhone) -->
+              <div class="absolute bottom-2 left-2 right-2 z-20 flex items-center justify-start gap-2">
+                <button
+                  id="gyroBtn"
+                  type="button"
+                  class="hidden comic-btn bg-popLime hover:bg-popYellow text-ink font-mono text-[11px] font-bold px-2.5 py-1 rounded-lg"
+                >
+                  📱 ENABLE GYRO TILT
+                </button>
+              </div>
+
+              <!-- Live Uploaded Photo with Comic Halftone & Pop-Art Contrast Filter -->
+              <div id="customPhotoContainer" class="hidden relative w-full aspect-[320/310] bg-ink rounded-xl overflow-hidden border-2 border-ink">
+                <img
+                  id="customHeroPhoto"
+                  alt="Hero Comic Portrait"
+                  class="w-full h-full object-cover"
+                  style="filter: contrast(1.45) saturate(1.65) brightness(1.15);"
+                />
+                <!-- Comic Halftone & Rim-Light Overlay -->
+                <div
+                  class="absolute inset-0 pointer-events-none mix-blend-overlay opacity-55"
+                  style="background-image: radial-gradient(#FFD000 1.4px, transparent 1.4px); background-size: 7px 7px;"
+                ></div>
+                <div class="absolute inset-0 pointer-events-none border-4 border-popCyan/60"></div>
+                <div class="absolute top-2 left-2 bg-popYellow text-ink font-comic text-sm px-2 py-0.5 border-2 border-ink -rotate-3">
+                  COMIC SHADER FX!
+                </div>
+              </div>
+
+              <!-- Custom Comic-Edited Portrait SVG (Based on Your Photo: Shades, Pinstripe Wu-Tang Jersey & Neon Bangla Backdrop) -->
+              <svg id="defaultComicPortraitSvg" viewBox="0 0 320 310" class="w-full h-auto block rounded-xl" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Ben-Day Halftone Pattern -->
+                  <pattern id="heroHalftoneDots" x="0" y="0" width="9" height="9" patternUnits="userSpaceOnUse">
+                    <circle cx="3" cy="3" r="1.5" fill="#FF1E6E" opacity="0.32" />
+                  </pattern>
+                  <!-- Neon Glow Filter -->
+                  <filter id="neonRedGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Deep Noir & Crimson Comic Background -->
+                <rect width="320" height="310" fill="#12060B" />
+                <polygon points="0,0 155,0 85,310 0,310" fill="#1E0A14" />
+                <polygon points="320,0 175,0 115,310 320,310" fill="#3A0814" />
+                <rect width="320" height="310" fill="url(#heroHalftoneDots)" />
+
+                <!-- Glowing Neon Bangla Typography Backdrop (Inspired by Your Photo!) -->
+                <g filter="url(#neonRedGlow)" opacity="0.92">
+                  <text x="196" y="138" font-family="sans-serif" font-weight="900" font-size="78" fill="#FF3D00" stroke="#FFD000" stroke-width="2">লাদে</text>
+                  <text x="215" y="232" font-family="sans-serif" font-weight="900" font-size="68" fill="#FF3D00" stroke="#FFD000" stroke-width="2">নিম</text>
+                </g>
+
+                <!-- Pop-Art Halftone Rim Halo behind Head -->
+                <circle cx="155" cy="128" r="88" fill="#FF1E6E" opacity="0.22" />
+                <circle cx="155" cy="128" r="74" fill="none" stroke="#00E5FF" stroke-width="3" stroke-dasharray="10 6" />
+
+                <!-- Comic Action Speed Lines -->
+                <line x1="18" y1="42" x2="78" y2="70" stroke="#00E5FF" stroke-width="4" stroke-linecap="round" />
+                <line x1="296" y1="38" x2="245" y2="68" stroke="#B8FF00" stroke-width="4" stroke-linecap="round" />
+                <line x1="14" y1="190" x2="64" y2="178" stroke="#FFD000" stroke-width="4" stroke-linecap="round" />
+
+                <!-- Bokeh Neon Orb (Left of Head like in Photo) -->
+                <circle cx="88" cy="118" r="9" fill="#FFD000" opacity="0.75" stroke="#FF1E6E" stroke-width="2" />
+
+                <!-- Pinstripe Baseball Jersey (Black with Red/Cyan Comic Rim Highlights) -->
+                <path d="M56,310 L72,216 Q155,192 238,216 L254,310 Z" fill="#14141C" stroke="#121216" stroke-width="6" stroke-linejoin="round" />
+                <!-- Rim Lighting on Shoulders -->
+                <path d="M58,308 L74,217 Q110,205 132,203" fill="none" stroke="#00E5FF" stroke-width="3.5" stroke-linecap="round" />
+                <path d="M252,308 L236,217 Q200,205 178,203" fill="none" stroke="#FF3D00" stroke-width="4.5" stroke-linecap="round" />
+
+                <!-- Jersey V-Neck Piping & Buttons -->
+                <path d="M126,202 L155,254 L184,202" fill="none" stroke="#FF3D00" stroke-width="4" stroke-linejoin="round" />
+                <line x1="155" y1="254" x2="155" y2="310" stroke="#FF3D00" stroke-width="3" />
+                <circle cx="155" cy="268" r="3.5" fill="#FFD000" stroke="#121216" stroke-width="1.5" />
+                <circle cx="155" cy="292" r="3.5" fill="#FFD000" stroke="#121216" stroke-width="1.5" />
+
+                <!-- Vertical Jersey Pinstripes -->
+                <line x1="104" y1="210" x2="96" y2="310" stroke="#FF3D00" stroke-width="2" opacity="0.85" />
+                <line x1="128" y1="205" x2="124" y2="310" stroke="#FF3D00" stroke-width="2" opacity="0.85" />
+                <line x1="182" y1="205" x2="186" y2="310" stroke="#FF3D00" stroke-width="2" opacity="0.85" />
+                <line x1="206" y1="210" x2="214" y2="310" stroke="#FF3D00" stroke-width="2" opacity="0.85" />
+
+                <!-- Wu-Tang Comic Crest & Text on Jersey -->
+                <path d="M98,256 Q112,248 124,256 L120,275 Q111,283 102,275 Z" fill="#FF3D00" stroke="#121216" stroke-width="2" />
+                <text x="172" y="274" font-family="Bangers, cursive" font-size="17" fill="#FF3D00" letter-spacing="1" transform="rotate(-6 172 274)">WU-TANG</text>
+                <text x="176" y="294" font-family="Bangers, cursive" font-size="18" fill="#FFD000">36</text>
+
+                <!-- Neck with Dramatic Comic Shadow & Crimson Rim Light -->
+                <path d="M138,168 L172,168 L176,208 Q155,220 134,208 Z" fill="#8C2D19" stroke="#121216" stroke-width="4.5" />
+                <path d="M158,170 L171,170 L174,206 L158,212 Z" fill="#FF3D00" opacity="0.7" />
+
+                <!-- Ears -->
+                <ellipse cx="110" cy="126" rx="8" ry="14" fill="#7A2514" stroke="#121216" stroke-width="4" />
+                <ellipse cx="200" cy="126" rx="8" ry="14" fill="#FF3D00" stroke="#121216" stroke-width="4" />
+
+                <!-- Face Sculpt (Dual-Tone Comic Noir Shadow + Crimson Neon Rim Light) -->
+                <path d="M113,104 C113,66 197,66 197,104 C197,148 180,176 155,176 C130,176 113,148 113,104 Z" fill="#6E1E12" stroke="#121216" stroke-width="5" />
+                <!-- Crimson Light Side (Right Side of Face matching Photo Lighting) -->
+                <path d="M155,70 C184,70 196,86 196,104 C196,146 179,174 155,174 C162,152 162,115 155,70 Z" fill="#E63917" />
+                <!-- Cheek & Nose Highlight -->
+                <path d="M155,108 L161,134 L152,137" fill="none" stroke="#FFD000" stroke-width="2.5" stroke-linecap="round" />
+
+                <!-- Styled Voluminous Quiff Hair -->
+                <path d="M111,105 C106,68 122,42 156,42 C188,42 204,64 199,105 C195,86 184,78 155,78 C126,78 115,86 111,105 Z" fill="#0B0B10" stroke="#121216" stroke-width="4.5" stroke-linejoin="round" />
+                <!-- Cyan & Red Hair Edge Highlights -->
+                <path d="M115,72 Q132,46 164,46" fill="none" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M174,48 Q198,60 197,94" fill="none" stroke="#FF3D00" stroke-width="3" stroke-linecap="round" />
+
+                <!-- Signature Round Sunglasses -->
+                <g>
+                  <!-- Bridge & Temple Arms -->
+                  <line x1="112" y1="114" x2="122" y2="115" stroke="#121216" stroke-width="4" />
+                  <line x1="188" y1="115" x2="198" y2="114" stroke="#121216" stroke-width="4" />
+                  <path d="M148,115 Q155,111 162,115" fill="none" stroke="#FFD000" stroke-width="3" />
+                  <!-- Left Lens -->
+                  <circle cx="135" cy="117" r="14" fill="#09090D" stroke="#00E5FF" stroke-width="2.5" />
+                  <line x1="127" y1="111" x2="135" y2="123" stroke="#00E5FF" stroke-width="2" opacity="0.65" />
+                  <!-- Right Lens -->
+                  <circle cx="175" cy="117" r="14" fill="#09090D" stroke="#FFD000" stroke-width="2.5" />
+                  <line x1="167" y1="111" x2="175" y2="123" stroke="#FF3D00" stroke-width="2.5" opacity="0.85" />
+                </g>
+
+                <!-- Mustache & Subtle Chin Goatee -->
+                <path d="M141,146 Q155,141 169,146" fill="none" stroke="#0B0B10" stroke-width="4" stroke-linecap="round" />
+                <path d="M146,154 Q155,157 164,154" fill="none" stroke="#121216" stroke-width="3" stroke-linecap="round" />
+                <ellipse cx="155" cy="164" rx="5" ry="2.5" fill="#0B0B10" />
+
+                <!-- Floating Comic Sparkles -->
+                <polygon points="44,68 49,80 61,85 49,90 44,102 39,90 27,85 39,80" fill="#B8FF00" stroke="#121216" stroke-width="2.5" />
+                <polygon points="274,74 278,84 288,88 278,92 274,102 270,92 260,88 270,84" fill="#00E5FF" stroke="#121216" stroke-width="2.5" />
+              </svg>
+            </div>
+
+            <!-- Comic Issue Barcode & Bottom Collector Strip -->
+            <div class="mt-4 flex items-center justify-between gap-3 bg-white text-ink border-3 border-ink p-2.5 rounded-xl shadow-comicSm">
+              <div class="flex items-center gap-1.5">
+                <!-- Mini SVG Barcode -->
+                <svg width="54" height="28" viewBox="0 0 54 28" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="0" width="3" height="28" fill="#121216"/>
+                  <rect x="5" y="0" width="1" height="28" fill="#121216"/>
+                  <rect x="9" y="0" width="4" height="28" fill="#121216"/>
+                  <rect x="16" y="0" width="2" height="28" fill="#121216"/>
+                  <rect x="21" y="0" width="5" height="28" fill="#121216"/>
+                  <rect x="29" y="0" width="2" height="28" fill="#121216"/>
+                  <rect x="34" y="0" width="3" height="28" fill="#121216"/>
+                  <rect x="40" y="0" width="1" height="28" fill="#121216"/>
+                  <rect x="44" y="0" width="4" height="28" fill="#121216"/>
+                  <rect x="50" y="0" width="4" height="28" fill="#121216"/>
+                </svg>
+                <div class="font-mono text-[10px] font-bold leading-tight">
+                  <div>CSE-HERO-01</div>
+                  <div class="text-popPink">DIRECT EDITION</div>
+                </div>
+              </div>
+
+              <div class="flex gap-1.5 text-center">
+                <span class="bg-popCyan border-2 border-ink px-2 py-0.5 font-comic text-base rounded">C++</span>
+                <span class="bg-popLime border-2 border-ink px-2 py-0.5 font-comic text-base rounded">IOT</span>
+                <span class="bg-popPink text-white border-2 border-ink px-2 py-0.5 font-comic text-base rounded">WEB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SPREAD 2: MULTIVERSE SKILL TRADING DECK ("SUPERPOWERS & ARSENAL")
+         ====================================================================== -->
+    <section id="powers" class="space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-4 border-ink pb-4">
+        <div>
+          <span class="bg-popPink text-white font-mono text-xs font-bold px-3 py-1 border-2 border-ink shadow-comicSm -rotate-1 inline-block">
+            CHAPTER 01 // COLLECTIBLE POWER DECK
+          </span>
+          <h2 class="comic-title text-4xl sm:text-6xl text-popCyan mt-2">
+            SUPERPOWERS &amp; TECH ARSENAL
+          </h2>
+        </div>
+        <div class="bg-popYellow text-ink border-3 border-ink p-3 rounded-xl shadow-comicSm max-w-md font-body font-bold text-base">
+          Tap any trading card to unleash sonic power stats &amp; comic sound effects!
+        </div>
+      </div>
+
+      <!-- 6 Tilted / Interactive Collectible Trading Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Card 1 -->
+        <div onclick="triggerPop(event, 'ZAP! 96%')" class="comic-panel comic-panel-interactive panel-surface rounded-2xl overflow-hidden cursor-pointer flex flex-col lg:-rotate-1">
+          <div class="halftone-cyan text-ink border-b-4 border-ink p-4 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold bg-white border-2 border-ink px-2 py-0.5 rounded">CARD #01 • HARDWARE</span>
+            <span class="font-comic text-xl bg-popYellow border-2 border-ink px-2.5 py-0.5 rounded shadow-comicSm">ATK: 96</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-2">⚡</div>
+              <h3 class="skill-title text-3xl mb-4" style="--hl:#00E5FF;"><span>EMBEDDED &amp; IOT SYSTEMS</span></h3>
+              <p class="font-body font-bold opacity-90 text-base mb-5">
+                Arduino microcontrollers, SIM800L GSM cellular modules, AT-command protocols, and real-time sensor telemetry.
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between font-mono text-xs font-bold mb-1">
+                <span>CIRCUIT MASTERY</span>
+                <span>96%</span>
+              </div>
+              <div class="w-full h-4 bg-cream border-3 border-ink rounded-full overflow-hidden">
+                <div class="h-full bg-popCyan border-r-3 border-ink" style="width: 96%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div onclick="triggerPop(event, 'KRAK! 95%')" class="comic-panel comic-panel-interactive panel-surface rounded-2xl overflow-hidden cursor-pointer flex flex-col lg:translate-y-2">
+          <div class="halftone-pink text-ink border-b-4 border-ink p-4 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold bg-white border-2 border-ink px-2 py-0.5 rounded">CARD #02 • SYSTEMS</span>
+            <span class="font-comic text-xl bg-popLime border-2 border-ink px-2.5 py-0.5 rounded shadow-comicSm">ATK: 95</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-2">🛡️</div>
+              <h3 class="skill-title text-3xl mb-4" style="--hl:#FF1E6E;"><span>C++ &amp; OOP ARCHITECTURE</span></h3>
+              <p class="font-body font-bold opacity-90 text-base mb-5">
+                Memory-safe systems engineering, polymorphic class hierarchies, STL data structures, and clean modular design.
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between font-mono text-xs font-bold mb-1">
+                <span>EXECUTION VELOCITY</span>
+                <span>95%</span>
+              </div>
+              <div class="w-full h-4 bg-cream border-3 border-ink rounded-full overflow-hidden">
+                <div class="h-full bg-popPink border-r-3 border-ink" style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div onclick="triggerPop(event, 'WHOOSH! 98%')" class="comic-panel comic-panel-interactive panel-surface rounded-2xl overflow-hidden cursor-pointer flex flex-col lg:rotate-1">
+          <div class="halftone-lime text-ink border-b-4 border-ink p-4 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold bg-white border-2 border-ink px-2 py-0.5 rounded">CARD #03 • FRONTEND</span>
+            <span class="font-comic text-xl bg-popCyan border-2 border-ink px-2.5 py-0.5 rounded shadow-comicSm">ATK: 98</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-2">🌐</div>
+              <h3 class="skill-title text-3xl mb-4" style="--hl:#B8FF00;"><span>FULL-STACK &amp; CANVAS 2D</span></h3>
+              <p class="font-body font-bold opacity-90 text-base mb-5">
+                Interactive HTML5 Canvas game loops, Web Audio synthesizers, responsive Tailwind layouts, and modern JS/React apps.
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between font-mono text-xs font-bold mb-1">
+                <span>RENDER POWER</span>
+                <span>98%</span>
+              </div>
+              <div class="w-full h-4 bg-cream border-3 border-ink rounded-full overflow-hidden">
+                <div class="h-full bg-popLime border-r-3 border-ink" style="width: 98%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div onclick="triggerPop(event, 'BOOM! 91%')" class="comic-panel comic-panel-interactive panel-surface rounded-2xl overflow-hidden cursor-pointer flex flex-col lg:rotate-1">
+          <div class="halftone-indigo text-ink border-b-4 border-ink p-4 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold bg-white border-2 border-ink px-2 py-0.5 rounded">CARD #04 • KERNEL</span>
+            <span class="font-comic text-xl bg-popYellow border-2 border-ink px-2.5 py-0.5 rounded shadow-comicSm">ATK: 91</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-2">⚙️</div>
+              <h3 class="skill-title text-3xl mb-4" style="--hl:#2B1966;--hl-text:#FAF3E0;"><span>OPERATING SYSTEMS LOGIC</span></h3>
+              <p class="font-body font-bold opacity-90 text-base mb-5">
+                CPU process scheduling, multithreading synchronization, deadlock avoidance, and Linux command-line mastery.
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between font-mono text-xs font-bold mb-1">
+                <span>CONCURRENCY</span>
+                <span>91%</span>
+              </div>
+              <div class="w-full h-4 bg-cream border-3 border-ink rounded-full overflow-hidden">
+                <div class="h-full bg-popPurple border-r-3 border-ink" style="width: 91%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div onclick="triggerPop(event, 'SPLASH! 94%')" class="comic-panel comic-panel-interactive panel-surface rounded-2xl overflow-hidden cursor-pointer flex flex-col lg:-translate-y-2">
+          <div class="halftone-yellow text-ink border-b-4 border-ink p-4 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold bg-white border-2 border-ink px-2 py-0.5 rounded">CARD #05 • DESIGN</span>
+            <span class="font-comic text-xl bg-popPink text-white border-2 border-ink px-2.5 py-0.5 rounded shadow-comicSm">ATK: 94</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-2">🎨</div>
+              <h3 class="skill-title text-3xl mb-4" style="--hl:#FFD000;"><span>POP-ART UI &amp; VECTOR SVG</span></h3>
+              <p class="font-body font-bold opacity-90 text-base mb-5">
+                Bold editorial interfaces, custom SVG illustrations, kinetic micro-interactions, and accessible mobile-first UX.
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between font-mono text-xs font-bold mb-1">
+                <span>VISUAL IMPACT</span>
+                <span>94%</span>
+              </div>
+              <div class="w-full h-4 bg-cream border-3 border-ink rounded-full overflow-hidden">
+                <div class="h-full bg-popYellow border-r-3 border-ink" style="width: 94%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div onclick="triggerPop(event, 'GENIUS! 93%')" class="comic-panel comic-panel-interactive panel-surface rounded-2xl overflow-hidden cursor-pointer flex flex-col lg:-rotate-1">
+          <div class="halftone-cyan text-ink border-b-4 border-ink p-4 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold bg-white border-2 border-ink px-2 py-0.5 rounded">CARD #06 • ALGORITHMS</span>
+            <span class="font-comic text-xl bg-popLime border-2 border-ink px-2.5 py-0.5 rounded shadow-comicSm">ATK: 93</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-2">🧠</div>
+              <h3 class="skill-title text-3xl mb-4" style="--hl:#00E5FF;"><span>ALGORITHMIC PROBLEM SOLVING</span></h3>
+              <p class="font-body font-bold opacity-90 text-base mb-5">
+                Graph traversal, dynamic programming, computational complexity optimization, and rapid hardware/software debugging.
+              </p>
+            </div>
+            <div>
+              <div class="flex justify-between font-mono text-xs font-bold mb-1">
+                <span>CRITICAL HIT RATE</span>
+                <span>93%</span>
+              </div>
+              <div class="w-full h-4 bg-cream border-3 border-ink rounded-full overflow-hidden">
+                <div class="h-full bg-popPink border-r-3 border-ink" style="width: 93%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SPREAD 3: ASYMMETRIC COMIC STORYBOARD ("EPIC MISSIONS ARCHIVE")
+         ====================================================================== -->
+    <section id="missions" class="space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-4 border-ink pb-4">
+        <div>
+          <span class="bg-popLime text-ink font-mono text-xs font-bold px-3 py-1 border-2 border-ink shadow-comicSm rotate-1 inline-block">
+            CHAPTER 02 // FIELD OPERATIONS
+          </span>
+          <h2 class="comic-title text-4xl sm:text-6xl text-popPink mt-2">
+            EPIC MISSIONS STORYBOARD
+          </h2>
+        </div>
+        <div class="panel-surface border-3 border-ink p-3 rounded-xl shadow-comicSm max-w-md font-body font-bold text-base">
+          Click <span class="text-popPink underline">"READ FULL ISSUE"</span> on any comic panel to inspect blueprints &amp; architecture!
+        </div>
+      </div>
+
+      <!-- Diagonal Comic Strip Spread -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Mission 1 (7 cols, Diagonal Slash Right) -->
+        <article class="lg:col-span-7 comic-panel comic-panel-interactive panel-surface clip-slash-right rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div class="halftone-cyan text-ink border-b-4 border-ink p-5 flex items-center justify-between">
+            <span class="bg-ink text-popYellow font-mono text-xs font-bold px-3 py-1 rounded">
+              ISSUE #101 • EMBEDDED + TELECOM
+            </span>
+            <span class="bg-popLime border-2 border-ink font-comic text-lg px-2.5 py-0.5 rounded -rotate-2">
+              DEPLOYED!
+            </span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="comic-title-sm text-3xl sm:text-4xl mb-3">
+                SENTINEL GSM: SIM800L SMS TRANSCEIVER
+              </h3>
+              <p class="font-body font-bold opacity-90 text-lg mb-5">
+                An Arduino-powered cellular telemetry and security node built with SIM800L GSM hardware. Parses incoming AT commands to dispatch instant SMS alerts and trigger remote relays without Wi-Fi.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="font-mono text-xs font-bold bg-popYellow text-ink border-2 border-ink px-2.5 py-1 rounded">C++ / ARDUINO</span>
+                <span class="font-mono text-xs font-bold bg-white text-ink border-2 border-ink px-2.5 py-1 rounded">SIM800L GSM</span>
+                <span class="font-mono text-xs font-bold bg-white text-ink border-2 border-ink px-2.5 py-1 rounded">UART SERIAL</span>
+              </div>
+            </div>
+            <button
+              onclick="openMissionModal(0, event)"
+              class="comic-btn bg-popPink text-white hover:bg-popYellow hover:text-ink font-comic text-xl px-6 py-2.5 rounded-xl self-start"
+            >
+              📖 READ FULL ISSUE #101 →
+            </button>
+          </div>
+        </article>
+
+        <!-- Mission 2 (5 cols, Diagonal Slash Left) -->
+        <article class="lg:col-span-5 comic-panel comic-panel-interactive panel-surface clip-slash-left rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div class="halftone-yellow text-ink border-b-4 border-ink p-5 flex items-center justify-between">
+            <span class="bg-ink text-popCyan font-mono text-xs font-bold px-3 py-1 rounded">
+              ISSUE #102 • GAME ENGINE
+            </span>
+            <span class="bg-popPink text-white border-2 border-ink font-comic text-lg px-2.5 py-0.5 rounded rotate-2">
+              60 FPS!
+            </span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="comic-title-sm text-3xl sm:text-4xl mb-3">
+                HYPER-CANVAS ARCADE SDK
+              </h3>
+              <p class="font-body font-bold opacity-90 text-lg mb-5">
+                Zero-dependency 2D physics, collision detection, and Web Audio chiptune synthesizer framework powering instant browser arcade mini-games.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="font-mono text-xs font-bold bg-popCyan text-ink border-2 border-ink px-2.5 py-1 rounded">HTML5 CANVAS</span>
+                <span class="font-mono text-xs font-bold bg-white text-ink border-2 border-ink px-2.5 py-1 rounded">WEB AUDIO API</span>
+              </div>
+            </div>
+            <button
+              onclick="openMissionModal(1, event)"
+              class="comic-btn bg-popCyan text-ink hover:bg-popLime font-comic text-xl px-6 py-2.5 rounded-xl self-start"
+            >
+              📖 READ FULL ISSUE #102 →
+            </button>
+          </div>
+        </article>
+
+        <!-- Mission 3 (5 cols, Diagonal Slash Right) -->
+        <article class="lg:col-span-5 comic-panel comic-panel-interactive panel-surface clip-slash-right rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div class="halftone-pink text-ink border-b-4 border-ink p-5 flex items-center justify-between">
+            <span class="bg-ink text-white font-mono text-xs font-bold px-3 py-1 rounded">
+              ISSUE #103 • OS KERNEL
+            </span>
+            <span class="bg-popYellow border-2 border-ink font-comic text-lg px-2.5 py-0.5 rounded -rotate-1">
+              SCHEDULER
+            </span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="comic-title-sm text-3xl sm:text-4xl mb-3">
+                CHRONOS CPU SCHEDULER LAB
+              </h3>
+              <p class="font-body font-bold opacity-90 text-lg mb-5">
+                Visualizes Round-Robin, SJF, and Priority Scheduling algorithms with live Gantt timelines, waiting time analytics, and turnaround metrics.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="font-mono text-xs font-bold bg-popPink text-white border-2 border-ink px-2.5 py-1 rounded">C++ / JS</span>
+                <span class="font-mono text-xs font-bold bg-white text-ink border-2 border-ink px-2.5 py-1 rounded">OS ALGORITHMS</span>
+              </div>
+            </div>
+            <button
+              onclick="openMissionModal(2, event)"
+              class="comic-btn bg-popYellow text-ink hover:bg-popLime font-comic text-xl px-6 py-2.5 rounded-xl self-start"
+            >
+              📖 READ FULL ISSUE #103 →
+            </button>
+          </div>
+        </article>
+
+        <!-- Mission 4 (7 cols, Diagonal Slash Left) -->
+        <article class="lg:col-span-7 comic-panel comic-panel-interactive panel-surface clip-slash-left rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div class="halftone-lime text-ink border-b-4 border-ink p-5 flex items-center justify-between">
+            <span class="bg-ink text-popLime font-mono text-xs font-bold px-3 py-1 rounded">
+              ISSUE #104 • RISOGRAPH GRAPHICS
+            </span>
+            <span class="bg-popCyan border-2 border-ink font-comic text-lg px-2.5 py-0.5 rounded rotate-1">
+              POP-ART UI
+            </span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="comic-title-sm text-3xl sm:text-4xl mb-3">
+                INKBLAST: HALFTONE &amp; COMIC COMPOSER
+              </h3>
+              <p class="font-body font-bold opacity-90 text-lg mb-5">
+                A browser-based comic panel layout and SVG halftone shader studio allowing creators to craft vibrant pop-art posters, CMYK misprint typography, and custom speech bubbles.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="font-mono text-xs font-bold bg-popLime text-ink border-2 border-ink px-2.5 py-1 rounded">SVG FILTERS</span>
+                <span class="font-mono text-xs font-bold bg-white text-ink border-2 border-ink px-2.5 py-1 rounded">TAILWIND CSS</span>
+                <span class="font-mono text-xs font-bold bg-white text-ink border-2 border-ink px-2.5 py-1 rounded">CREATIVE UI</span>
+              </div>
+            </div>
+            <button
+              onclick="openMissionModal(3, event)"
+              class="comic-btn bg-popPurple text-white hover:bg-popPink font-comic text-xl px-6 py-2.5 rounded-xl self-start"
+            >
+              📖 READ FULL ISSUE #104 →
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SPREAD 4: THE CYBER-COMIC ARCADE CABINET (3 PLAYABLE MINI-GAMES)
+         ====================================================================== -->
+    <section id="arcade" class="space-y-6">
+      <!-- Arcade Marquee Header -->
+      <div class="comic-panel halftone-indigo p-6 sm:p-8 rounded-2xl text-white flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div>
+          <div class="inline-block bg-popLime text-ink font-mono text-xs font-bold px-3 py-1 border-3 border-ink shadow-comicSm mb-2 -rotate-1">
+            ★ BONUS DIMENSION // FREE PLAY ARCADE ★
+          </div>
+          <h2 class="comic-title text-4xl sm:text-6xl text-popYellow">
+            THE CYBER-COMIC ARCADE
+          </h2>
+          <p class="font-body font-bold text-lg sm:text-xl text-white/95 max-w-2xl mt-1">
+            Plug in a game cartridge below and test your reflexes across 3 custom HTML5 Canvas mini-games with synthesized retro chiptunes!
+          </p>
+        </div>
+
+        <!-- High Score Trophy Box -->
+        <div class="bg-ink border-4 border-popLime p-4 rounded-xl shadow-cmyk text-center min-w-[220px]">
+          <div class="font-mono text-xs text-popCyan font-bold uppercase tracking-wider">ALL-TIME HIGH SCORE</div>
+          <div id="arcadeHighScore" class="font-comic text-4xl sm:text-5xl text-popYellow tracking-wider mt-1">0000</div>
+          <div id="arcadeHighGameLabel" class="font-mono text-[11px] text-popPink font-bold mt-0.5">BUG BLASTER</div>
+        </div>
+      </div>
+
+      <!-- Arcade Cabinet Bezel -->
+      <div class="comic-panel bg-ink p-4 sm:p-8 rounded-3xl">
+        <!-- Cartridge Selector Slots -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
+          <button
+            id="tab-blaster"
+            onclick="selectArcadeGame('blaster', event)"
+            class="comic-btn bg-popYellow text-ink p-3 sm:p-4 rounded-xl text-left flex items-center justify-between"
+          >
+            <div>
+              <div class="font-mono text-[11px] font-bold uppercase">CART #01 • SHOOTER</div>
+              <div class="font-comic text-2xl sm:text-3xl leading-none mt-0.5">👾 BUG BLASTER</div>
+            </div>
+            <span class="bg-ink text-popYellow font-mono text-xs px-2 py-1 rounded">PLAY</span>
+          </button>
+
+          <button
+            id="tab-smasher"
+            onclick="selectArcadeGame('smasher', event)"
+            class="comic-btn bg-white text-ink hover:bg-popCyan p-3 sm:p-4 rounded-xl text-left flex items-center justify-between"
+          >
+            <div>
+              <div class="font-mono text-[11px] font-bold uppercase">CART #02 • BREAKOUT</div>
+              <div class="font-comic text-2xl sm:text-3xl leading-none mt-0.5">🧱 FIREWALL SMASHER</div>
+            </div>
+            <span class="bg-ink text-white font-mono text-xs px-2 py-1 rounded">PLAY</span>
+          </button>
+
+          <button
+            id="tab-runner"
+            onclick="selectArcadeGame('runner', event)"
+            class="comic-btn bg-white text-ink hover:bg-popPink hover:text-white p-3 sm:p-4 rounded-xl text-left flex items-center justify-between"
+          >
+            <div>
+              <div class="font-mono text-[11px] font-bold uppercase">CART #03 • RUNNER</div>
+              <div class="font-comic text-2xl sm:text-3xl leading-none mt-0.5">⚡ CODE DASH</div>
+            </div>
+            <span class="bg-ink text-white font-mono text-xs px-2 py-1 rounded">PLAY</span>
+          </button>
+        </div>
+
+        <!-- CRT Monitor Frame -->
+        <div class="bg-[#161524] border-4 border-popCyan rounded-2xl p-3 sm:p-5 relative">
+          <!-- Top HUD Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-ink border-3 border-white/20 px-4 py-2.5 rounded-xl mb-4 text-white font-mono">
+            <div class="flex items-center gap-4 sm:gap-6">
+              <div>
+                <span class="text-xs text-popCyan block">SCORE</span>
+                <span id="hudScore" class="text-xl sm:text-2xl font-bold text-popYellow">0</span>
+              </div>
+              <div>
+                <span class="text-xs text-popPink block">LIVES</span>
+                <span id="hudLives" class="text-lg sm:text-xl font-bold">❤️❤️❤️</span>
+              </div>
+              <div class="hidden sm:block">
+                <span class="text-xs text-popLime block">WAVE / LVL</span>
+                <span id="hudLevel" class="text-xl font-bold text-white">1</span>
+              </div>
+            </div>
+
+            <button
+              id="startPauseBtn"
+              onclick="startOrRestartCurrentGame(event)"
+              class="comic-btn bg-popLime text-ink font-comic text-xl px-5 py-1.5 rounded-lg"
+            >
+              ▶ START GAME
+            </button>
+          </div>
+
+          <!-- Responsive Canvas Wrapper -->
+          <div id="canvasContainer" class="arcade-frame bg-[#0d0d14] border-4 border-ink rounded-xl overflow-hidden select-none">
+            <canvas id="arcadeCanvas" class="w-full h-full block"></canvas>
+
+            <!-- CRT Scanlines -->
+            <div class="crt-scanlines pointer-events-none absolute inset-0"></div>
+
+            <!-- Interactive Start / Game Over Overlay -->
+            <div id="arcadeOverlay" class="absolute inset-0 bg-ink/90 flex flex-col items-center justify-center p-6 text-center">
+              <div id="overlayBadge" class="bg-popPink text-white font-mono text-xs font-bold px-3 py-1 border-2 border-white mb-3 rotate-1">
+                CARTRIDGE LOADED
+              </div>
+              <h3 id="overlayTitle" class="comic-title text-4xl sm:text-6xl text-popYellow mb-2">
+                BUG BLASTER
+              </h3>
+              <p id="overlayDesc" class="font-body font-bold text-white text-base sm:text-xl max-w-md mb-6">
+                Blast descending syntax bugs before they crash the mainframe! Move with ⬅️ ➡️ or Touch/Mouse, Fire with SPACE or Tap!
+              </p>
+              <button
+                onclick="startOrRestartCurrentGame(event)"
+                class="comic-btn bg-popLime hover:bg-popYellow text-ink font-comic text-2xl sm:text-3xl px-8 py-3 rounded-xl animate-bounce"
+              >
+                🕹️ INSERT COIN &amp; PLAY!
+              </button>
+            </div>
+          </div>
+
+          <!-- Tactile Arcade Deck Controls (Outside Canvas) -->
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <div class="font-mono text-xs text-white/80">
+              <span class="text-popLime font-bold">CONTROLS:</span>
+              <span id="controlsHint">Desktop: Arrow Keys / A-D + Space | Mobile: Arcade Buttons or Drag on Screen</span>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3 mx-auto sm:mx-0">
+              <button
+                id="touchLeftBtn"
+                class="arcade-btn comic-btn bg-popCyan text-ink font-comic text-xl px-5 py-2.5 rounded-xl active:bg-popYellow"
+              >
+                ◀ LEFT
+              </button>
+              <button
+                id="touchActionBtn"
+                class="arcade-btn comic-btn bg-popPink text-white font-comic text-xl px-6 py-2.5 rounded-xl active:bg-popLime active:text-ink"
+              >
+                🔥 FIRE / JUMP
+              </button>
+              <button
+                id="touchRightBtn"
+                class="arcade-btn comic-btn bg-popCyan text-ink font-comic text-xl px-5 py-2.5 rounded-xl active:bg-popYellow"
+              >
+                RIGHT ▶
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SPREAD 5: HERO SIGNAL TRANSMISSION ("SEND A BAT-SIGNAL")
+         ====================================================================== -->
+    <section id="signal" class="pb-10">
+      <div class="comic-panel panel-surface rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+        <!-- Left Signal Beacon Art (5 Cols) -->
+        <div class="lg:col-span-5 halftone-pink text-ink p-6 sm:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-ink flex flex-col justify-between">
+          <div>
+            <span class="bg-ink text-popLime font-mono text-xs font-bold px-3 py-1 rounded">
+              CHAPTER 03 // TEAM-UP REQUEST
+            </span>
+            <h2 class="comic-title text-4xl sm:text-6xl text-white mt-3 leading-none">
+              SEND A HERO SIGNAL!
+            </h2>
+            <p class="font-body font-bold text-white text-lg mt-4 bg-ink/90 p-4 rounded-xl border-3 border-ink shadow-comicSm">
+              Got an embedded hardware prototype, web app mission, or arcade high score to share? Beam a transmission straight to Leou's HQ!
+            </p>
+          </div>
+
+          <div class="mt-8 space-y-3">
+            <div class="font-mono text-xs font-bold text-ink bg-popYellow inline-block px-2.5 py-1 border-2 border-ink">
+              DIRECT COMMS FREQUENCIES:
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="#origin" onclick="triggerPop(event, 'GITHUB!')" class="comic-btn bg-white text-ink font-mono text-xs font-bold px-3.5 py-2 rounded-lg">
+                🐙 GITHUB
+              </a>
+              <a href="#origin" onclick="triggerPop(event, 'LINKEDIN!')" class="comic-btn bg-popCyan text-ink font-mono text-xs font-bold px-3.5 py-2 rounded-lg">
+                💼 LINKEDIN
+              </a>
+              <button onclick="copyEmail(event)" class="comic-btn bg-popLime text-ink font-mono text-xs font-bold px-3.5 py-2 rounded-lg">
+                📋 COPY EMAIL
+              </button>
+            </div>
+            <p id="copyToast" class="hidden font-mono text-xs font-bold bg-ink text-popLime px-3 py-1.5 rounded-lg border-2 border-popLime">
+              ✓ EMAIL COPIED: hero@leouhasan.dev
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Speech-Bubble Form (7 Cols) -->
+        <div class="lg:col-span-7 p-6 sm:p-10 relative">
+          <form id="contactForm" onsubmit="handleSignalSubmit(event)" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="senderName" class="block font-comic text-xl mb-1">
+                  YOUR HERO ALIAS *
+                </label>
+                <input
+                  id="senderName"
+                  type="text"
+                  required
+                  placeholder="e.g. Miles Morales"
+                  class="w-full bg-white text-ink border-3 border-ink rounded-xl px-4 py-3 font-body font-bold text-base shadow-comicSm focus:outline-none focus:bg-popYellow/20"
+                />
+              </div>
+
+              <div>
+                <label for="senderEmail" class="block font-comic text-xl mb-1">
+                  COMMS FREQUENCY (EMAIL) *
+                </label>
+                <input
+                  id="senderEmail"
+                  type="email"
+                  required
+                  placeholder="miles@brooklyn.net"
+                  class="w-full bg-white text-ink border-3 border-ink rounded-xl px-4 py-3 font-body font-bold text-base shadow-comicSm focus:outline-none focus:bg-popCyan/20"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="missionType" class="block font-comic text-xl mb-1">
+                MISSION TYPE
+              </label>
+              <select
+                id="missionType"
+                class="w-full bg-white text-ink border-3 border-ink rounded-xl px-4 py-3 font-body font-bold text-base shadow-comicSm focus:outline-none"
+              >
+                <option value="Web / Interactive App">🌐 Web / Interactive Arcade Application</option>
+                <option value="Embedded / IoT Hardware">⚡ Embedded Systems &amp; IoT Prototype</option>
+                <option value="C++ / Systems Architecture">🛡️ C++ / Systems Architecture</option>
+                <option value="Arcade Challenge!">🕹️ Just Saying Hi &amp; Challenging High Scores!</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="signalMessage" class="block font-comic text-xl mb-1">
+                SPEECH BUBBLE TRANSMISSION *
+              </label>
+              <textarea
+                id="signalMessage"
+                rows="4"
+                required
+                placeholder="Write your mission briefing here..."
+                class="w-full bg-white text-ink border-3 border-ink rounded-xl px-4 py-3 font-body font-bold text-base shadow-comicSm focus:outline-none focus:bg-popYellow/20"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="comic-btn bg-popYellow hover:bg-popLime text-ink font-comic text-2xl px-8 py-3 rounded-xl w-full sm:w-auto"
+            >
+              ⚡ TRANSMIT SIGNAL!
+            </button>
+          </form>
+
+          <!-- Instant Transmission Blast Box -->
+          <div id="signalConfirmation" class="hidden mt-6 comic-panel halftone-lime text-ink p-6 rounded-2xl text-center">
+            <div class="inline-block bg-popPink text-white font-comic text-3xl px-4 py-1 border-3 border-ink shadow-comicSm -rotate-2 mb-2">
+              ZAP! TRANSMISSION RECEIVED!
+            </div>
+            <p id="confirmationText" class="font-body font-bold text-lg text-ink mt-2">
+              Your signal is blazing across the multiverse! I will reply at super-speed.
+            </p>
+            <button
+              onclick="resetSignalForm(event)"
+              class="comic-btn bg-white text-ink font-mono text-xs font-bold px-4 py-2 rounded-lg mt-4"
+            >
+              SEND ANOTHER TRANSMISSION
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       COMIC FOOTER
+       ======================================================================== -->
+  <footer class="relative z-10 bg-ink text-cream border-t-4 border-ink py-8 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <span class="font-comic text-2xl text-popYellow tracking-wider">ISSUE #01 • LEOU HASAN</span>
+        <p class="font-mono text-xs text-white/75 mt-1">
+          PRINTED IN RISOGRAPH CMYK, BEN-DAY HALFTONES, HTML5 CANVAS &amp; WEB AUDIO SYNTHS.
+        </p>
+      </div>
+      <div class="font-comic text-xl text-popLime tracking-wider">
+        TO BE CONTINUED IN ISSUE #02...
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MISSION DOSSIER MODAL (READ FULL ISSUE POPUP)
+       ======================================================================== -->
+  <div id="missionModal" class="fixed inset-0 z-50 hidden bg-ink/85 backdrop-blur-xs flex items-center justify-center p-4" onclick="closeMissionModal(event)">
+    <div class="comic-panel panel-surface max-w-2xl w-full rounded-2xl overflow-hidden relative" onclick="event.stopPropagation()">
+      <div id="modalBanner" class="halftone-cyan text-ink border-b-4 border-ink p-5 flex items-center justify-between">
+        <span id="modalIssueTag" class="bg-ink text-popYellow font-mono text-xs font-bold px-3 py-1 rounded">
+          ISSUE #101
+        </span>
+        <button
+          onclick="closeMissionModal(event)"
+          class="comic-btn bg-popPink text-white font-comic text-xl px-3 py-0.5 rounded-lg"
+        >
+          ✕ CLOSE
+        </button>
+      </div>
+      <div class="p-6 sm:p-8 space-y-4 max-h-[80vh] overflow-y-auto">
+        <h3 id="modalTitle" class="comic-title-sm text-3xl sm:text-4xl">
+          MISSION TITLE
+        </h3>
+        <div id="modalTags" class="flex flex-wrap gap-2"></div>
+        <div class="bg-white text-ink border-3 border-ink p-4 rounded-xl shadow-comicSm">
+          <h4 class="font-comic text-xl text-popPink mb-1">THE CHALLENGE:</h4>
+          <p id="modalChallenge" class="font-body font-bold text-gray-800 text-base"></p>
+        </div>
+        <div class="bg-white text-ink border-3 border-ink p-4 rounded-xl shadow-comicSm">
+          <h4 class="font-comic text-xl text-popPurple mb-1">THE ENGINEERING SOLUTION:</h4>
+          <p id="modalSolution" class="font-body font-bold text-gray-800 text-base"></p>
+        </div>
+        <div class="bg-popLime text-ink border-3 border-ink p-4 rounded-xl">
+          <h4 class="font-comic text-xl mb-1">MISSION OUTCOME:</h4>
+          <p id="modalOutcome" class="font-body font-bold text-base"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT: INTERACTIVE HALFTONE MATRIX, 3D HOLO CARD, AUDIO & ARCADE
+       ======================================================================== -->
+  <script>
+    /* ========================================================================
+       0. INTERACTIVE BEN-DAY HALFTONE WAVE & FLOATING COMIC GLYPHS BACKGROUND
+       ======================================================================== */
+    const bgCanvas = document.getElementById('bgComicCanvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    let isMidnightMode = false;
+
+    const pointer = { x: -9999, y: -9999, active: false };
+    let scrollYOffset = 0;
+
+    // Floating Comic Shapes (Stars, Lightning Bolts, Triangles, Rings)
+    const comicGlyphs = [];
+    const GLYPH_COLORS = ['#00E5FF', '#FF1E6E', '#FFD000', '#B8FF00'];
+
+    function initBackgroundGlyphs() {
+      comicGlyphs.length = 0;
+      const count = window.innerWidth < 640 ? 14 : 26;
+      const types = ['star', 'bolt', 'triangle', 'ring'];
+      for (let i = 0; i < count; i++) {
+        comicGlyphs.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          size: 10 + Math.random() * 16,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          rot: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.015,
+          type: types[i % types.length],
+          color: GLYPH_COLORS[i % GLYPH_COLORS.length]
+        });
+      }
+    }
+
+    function resizeBgCanvas() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      pointer.active = true;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        pointer.x = e.touches[0].clientX;
+        pointer.y = e.touches[0].clientY;
+        pointer.active = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+      scrollYOffset = window.scrollY;
+    }, { passive: true });
+
+    function drawComicGlyph(g) {
+      bgCtx.save();
+      bgCtx.translate(g.x, g.y);
+      bgCtx.rotate(g.rot);
+      bgCtx.fillStyle = g.color;
+      bgCtx.strokeStyle = isMidnightMode ? '#FAF3E0' : '#121216';
+      bgCtx.lineWidth = 2;
+      bgCtx.globalAlpha = isMidnightMode ? 0.32 : 0.45;
+
+      if (g.type === 'triangle') {
+        bgCtx.beginPath();
+        bgCtx.moveTo(0, -g.size);
+        bgCtx.lineTo(g.size * 0.9, g.size * 0.8);
+        bgCtx.lineTo(-g.size * 0.9, g.size * 0.8);
+        bgCtx.closePath();
+        bgCtx.fill();
+        bgCtx.stroke();
+      } else if (g.type === 'ring') {
+        bgCtx.beginPath();
+        bgCtx.arc(0, 0, g.size * 0.75, 0, Math.PI * 2);
+        bgCtx.stroke();
+      } else if (g.type === 'bolt') {
+        bgCtx.beginPath();
+        bgCtx.moveTo(-g.size * 0.2, -g.size);
+        bgCtx.lineTo(g.size * 0.45, -g.size * 0.1);
+        bgCtx.lineTo(0, -g.size * 0.1);
+        bgCtx.lineTo(g.size * 0.25, g.size);
+        bgCtx.lineTo(-g.size * 0.45, g.size * 0.1);
+        bgCtx.lineTo(0, g.size * 0.1);
+        bgCtx.closePath();
+        bgCtx.fill();
+        bgCtx.stroke();
+      } else {
+        // 4-point comic sparkle star
+        bgCtx.beginPath();
+        const s = g.size;
+        const inner = s * 0.35;
+        bgCtx.moveTo(0, -s);
+        bgCtx.lineTo(inner, -inner);
+        bgCtx.lineTo(s, 0);
+        bgCtx.lineTo(inner, inner);
+        bgCtx.lineTo(0, s);
+        bgCtx.lineTo(-inner, inner);
+        bgCtx.lineTo(-s, 0);
+        bgCtx.lineTo(-inner, -inner);
+        bgCtx.closePath();
+        bgCtx.fill();
+        bgCtx.stroke();
+      }
+      bgCtx.restore();
+    }
+
+    let bgRunning = false;
+    let bgLastDraw = 0;
+    const BG_IS_MOBILE = () => window.innerWidth < 640;
+
+    function startBg() {
+      if (bgRunning) return;
+      bgRunning = true;
+      requestAnimationFrame(animateBgCanvas);
+    }
+
+    function animateBgCanvas(time) {
+      // Pause the decorative background while a game is running or the tab is hidden
+      if (document.hidden || (typeof gameRunning !== 'undefined' && gameRunning)) {
+        bgRunning = false;
+        return;
+      }
+      // ~30fps on phones, full rate on desktop
+      if (BG_IS_MOBILE() && time - bgLastDraw < 33) {
+        requestAnimationFrame(animateBgCanvas);
+        return;
+      }
+      bgLastDraw = time;
+
+      const w = bgCanvas.width;
+      const h = bgCanvas.height;
+      bgCtx.clearRect(0, 0, w, h);
+
+      // 1. Interactive Ben-Day Halftone Dot Matrix with Ripple Wave
+      const spacing = w < 640 ? 44 : 38;
+      const t = time * 0.002;
+      const parallaxY = (scrollYOffset * 0.18) % spacing;
+
+      for (let gx = spacing / 2; gx < w; gx += spacing) {
+        for (let gy = spacing / 2 - parallaxY; gy < h + spacing; gy += spacing) {
+          const dx = gx - pointer.x;
+          const dy = gy - pointer.y;
+          const dist = Math.hypot(dx, dy);
+
+          // Ambient wave + cursor proximity swell
+          const wave = Math.sin(gx * 0.015 + gy * 0.015 + t) * 0.8;
+          const cursorBoost = pointer.active && dist < 190 ? (1 - dist / 190) * 5.2 : 0;
+          const radius = Math.max(1.1, 1.8 + wave + cursorBoost);
+
+          if (cursorBoost > 1.2) {
+            // CMYK chromatic split dots near cursor
+            bgCtx.fillStyle = 'rgba(0, 229, 255, 0.35)';
+            bgCtx.beginPath();
+            bgCtx.arc(gx - 2.5, gy - 2, radius, 0, Math.PI * 2);
+            bgCtx.fill();
+
+            bgCtx.fillStyle = 'rgba(255, 30, 110, 0.35)';
+            bgCtx.beginPath();
+            bgCtx.arc(gx + 2.5, gy + 2, radius, 0, Math.PI * 2);
+            bgCtx.fill();
+          } else {
+            bgCtx.fillStyle = isMidnightMode
+              ? 'rgba(0, 229, 255, 0.12)'
+              : 'rgba(18, 18, 22, 0.11)';
+            bgCtx.beginPath();
+            bgCtx.arc(gx, gy, radius, 0, Math.PI * 2);
+            bgCtx.fill();
+          }
+        }
+      }
+
+      // 2. Floating Comic Action Glyphs
+      for (const g of comicGlyphs) {
+        g.x += g.vx;
+        g.y += g.vy;
+        g.rot += g.vRot;
+
+        // Gentle cursor repulsion
+        if (pointer.active) {
+          const dx = g.x - pointer.x;
+          const dy = g.y - pointer.y;
+          const d = Math.hypot(dx, dy);
+          if (d < 130 && d > 0) {
+            g.x += (dx / d) * 1.4;
+            g.y += (dy / d) * 1.4;
+          }
+        }
+
+        if (g.x < -30) g.x = w + 30;
+        if (g.x > w + 30) g.x = -30;
+        if (g.y < -30) g.y = h + 30;
+        if (g.y > h + 30) g.y = -30;
+
+        drawComicGlyph(g);
+      }
+
+      requestAnimationFrame(animateBgCanvas);
+    }
+
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) startBg(); });
+
+    function toggleInkTheme(event) {
+      isMidnightMode = !isMidnightMode;
+      document.body.classList.toggle('midnight-mode', isMidnightMode);
+      document.getElementById('themeIcon').textContent = isMidnightMode ? '☀️' : '🌙';
+      document.getElementById('themeLabel').textContent = isMidnightMode ? 'NEWSPRINT' : 'NEON INK';
+      triggerPop(event, isMidnightMode ? 'NEON DIMENSION!' : 'DAYLIGHT INK!');
+    }
+
+    /* ========================================================================
+       0B. 3D TILT & HOLOGRAPHIC SHIMMER FOR COLLECTOR'S COVER CARD
+       ======================================================================== */
+    const holoCard = document.getElementById('holoCoverCard');
+    const holoShimmer = document.getElementById('holoShimmer');
+    const gyroBtn = document.getElementById('gyroBtn');
+
+    if (holoCard && holoShimmer) {
+      const MAX_TILT = 14;              // degrees
+      const cur = { rx: 0, ry: 0, sx: 50, sy: 50, sc: 1, glow: 0 };
+      const tgt = { rx: 0, ry: 0, sx: 50, sy: 50, sc: 1, glow: 0 };
+      let tiltRaf = 0;
+      let gyroOn = false;
+      let gotSensor = false;            // true once the phone actually delivers orientation data
+      let gyroBase = null;              // neutral phone pose (set on first reading)
+      let cardVisible = true;
+      let swayOn = false;               // gentle auto-motion when no sensor is available
+      let touching = false;
+      let watchdog = 0;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+      function applyTilt(nx, ny, scale) {
+        tgt.ry = clamp(nx, -1, 1) * MAX_TILT;
+        tgt.rx = clamp(ny, -1, 1) * -MAX_TILT;
+        tgt.sx = 50 + clamp(nx, -1, 1) * 50;
+        tgt.sy = 50 + clamp(ny, -1, 1) * 50;
+        tgt.sc = scale;
+        tgt.glow = 1;
+      }
+
+      function renderTilt() {
+        tiltRaf = 0;
+        if (swayOn && !touching) {
+          const t = performance.now() / 1000;
+          applyTilt(Math.sin(t * 0.9) * 0.6, Math.cos(t * 0.65) * 0.5, 1.02);
+        }
+        const k = 0.16; // smoothing
+        cur.rx += (tgt.rx - cur.rx) * k;
+        cur.ry += (tgt.ry - cur.ry) * k;
+        cur.sx += (tgt.sx - cur.sx) * k;
+        cur.sy += (tgt.sy - cur.sy) * k;
+        cur.sc += (tgt.sc - cur.sc) * k;
+        cur.glow += (tgt.glow - cur.glow) * k;
+
+        holoCard.style.transform =
+          `rotateX(${cur.rx.toFixed(2)}deg) rotateY(${cur.ry.toFixed(2)}deg) scale(${cur.sc.toFixed(3)})`;
+        holoShimmer.style.opacity = cur.glow.toFixed(3);
+        holoShimmer.style.backgroundPosition = `${cur.sx.toFixed(1)}% ${cur.sy.toFixed(1)}%`;
+
+        const settled =
+          Math.abs(tgt.rx - cur.rx) < 0.02 && Math.abs(tgt.ry - cur.ry) < 0.02 &&
+          Math.abs(tgt.sx - cur.sx) < 0.2 && Math.abs(tgt.sy - cur.sy) < 0.2 &&
+          Math.abs(tgt.glow - cur.glow) < 0.01 && Math.abs(tgt.sc - cur.sc) < 0.001;
+        if (!settled || (swayOn && !touching)) requestTiltFrame();
+      }
+
+      function requestTiltFrame() {
+        if (!tiltRaf && cardVisible && !document.hidden) tiltRaf = requestAnimationFrame(renderTilt);
+      }
+
+      // nx, ny in -1..1  (ny positive = pointer / phone tilted toward the bottom)
+      function setTilt(nx, ny, scale) {
+        applyTilt(nx, ny, scale);
+        requestTiltFrame();
+      }
+
+      function resetTilt() {
+        tgt.rx = 0; tgt.ry = 0; tgt.sx = 50; tgt.sy = 50; tgt.sc = 1; tgt.glow = 0;
+        requestTiltFrame();
+      }
+
+      /* ---- PC: mouse movement (works anywhere on the page, strongest near the card) ---- */
+      function pointerToTilt(clientX, clientY, reachScale) {
+        const r = holoCard.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const reach = Math.max(r.width, r.height) * (reachScale || 1.1);
+        const inside = clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom;
+        setTilt((clientX - cx) / reach, (clientY - cy) / reach, inside ? 1.02 : 1.0);
+      }
+
+      window.addEventListener('pointermove', (e) => {
+        if (e.pointerType !== 'mouse') return;   // mouse only; fingers are handled below
+        if (e.movementX === 0 && e.movementY === 0) return; // ignore synthetic/no-move events
+        swayOn = false;
+        pointerToTilt(e.clientX, e.clientY);
+      }, { passive: true });
+
+      document.addEventListener('mouseleave', resetTilt);
+
+      /* ---- Phone: touching the card tilts it toward your finger (works with or without gyro) ---- */
+      function touchTilt(e) {
+        const t = e.touches && e.touches[0];
+        if (!t) return;
+        touching = true;
+        pointerToTilt(t.clientX, t.clientY, 0.65);   // stronger than mouse so it's clearly visible
+      }
+      function endTouch() {
+        touching = false;
+        if (gyroOn && gotSensor) return;             // gyro keeps driving it
+        if (swayOn) requestTiltFrame(); else resetTilt();
+      }
+      holoCard.addEventListener('touchstart', touchTilt, { passive: true });
+      holoCard.addEventListener('touchmove', touchTilt, { passive: true });
+      holoCard.addEventListener('touchend', endTouch, { passive: true });
+      holoCard.addEventListener('touchcancel', endTouch, { passive: true });
+
+      /* ---- Gentle auto-sway when the phone gives us no sensor data ---- */
+      function enableSway() {
+        if (swayOn || reduceMotion || gotSensor) return;
+        swayOn = true;
+        requestTiltFrame();
+      }
+
+      /* ---- Phone: gyroscope (DeviceOrientation) ---- */
+      function onOrient(e) {
+        if (e.gamma == null || e.beta == null) return;
+        gotSensor = true;
+        swayOn = false;
+        if (touching) return;
+        let g = e.gamma;  // left/right  (-90..90)
+        let b = e.beta;   // front/back  (-180..180)
+        const ang = (screen.orientation && typeof screen.orientation.angle === 'number')
+          ? screen.orientation.angle : (window.orientation || 0);
+        if (ang === 90) { const t = g; g = b; b = -t; }
+        else if (ang === 270 || ang === -90) { const t = g; g = -b; b = t; }
+        else if (ang === 180) { g = -g; b = -b; }
+
+        if (!gyroBase) gyroBase = { g, b };               // whatever angle you hold the phone at = neutral
+        gyroBase.g += (g - gyroBase.g) * 0.004;           // slowly self-recentre
+        gyroBase.b += (b - gyroBase.b) * 0.004;
+
+        const RANGE = 18; // degrees of real phone tilt for full card tilt
+        setTilt((g - gyroBase.g) / RANGE, (b - gyroBase.b) / RANGE, 1.02);
+      }
+
+      let permissionUi = false;
+
+      function startGyro() {
+        if (gyroOn) return;
+        gyroOn = true;
+        gyroBase = null;
+        gotSensor = false;
+        window.addEventListener('deviceorientation', onOrient, true);
+        if (gyroBtn) gyroBtn.classList.add('hidden');
+
+        // If no real sensor data arrives, the browser/page is blocking it -> fall back to sway + touch
+        clearTimeout(watchdog);
+        watchdog = setTimeout(() => {
+          if (gotSensor) return;
+          window.removeEventListener('deviceorientation', onOrient, true);
+          gyroOn = false;
+          enableSway();
+          if (permissionUi && gyroBtn) {
+            gyroBtn.textContent = '📱 TAP TO ENABLE TILT';
+            gyroBtn.classList.remove('hidden');
+          }
+        }, 1500);
+      }
+
+      function requestGyro(ev) {
+        if (ev) ev.stopPropagation();
+        const DOE = window.DeviceOrientationEvent;
+        if (DOE && typeof DOE.requestPermission === 'function') {
+          // iOS 13+ — must be called from a tap
+          DOE.requestPermission().then((state) => {
+            if (state === 'granted') startGyro();
+            else if (gyroBtn) gyroBtn.textContent = '❌ MOTION BLOCKED (Settings › Safari › Motion)';
+          }).catch(() => {});
+        } else {
+          startGyro();
+        }
+      }
+
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+      if (isTouchDevice) {
+        const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) ||
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const hasPermApi = 'DeviceOrientationEvent' in window &&
+                           typeof window.DeviceOrientationEvent.requestPermission === 'function';
+
+        if (!window.isSecureContext || !('DeviceOrientationEvent' in window)) {
+          // Opened via file:// or http:// -> phones block motion sensors. Use sway + finger tilt instead.
+          enableSway();
+        } else if (isIOS && hasPermApi) {
+          // iPhone: needs a tap to allow motion access
+          permissionUi = true;
+          if (gyroBtn) {
+            gyroBtn.classList.remove('hidden');
+            gyroBtn.addEventListener('click', requestGyro);
+          }
+          holoCard.addEventListener('click', () => { if (!gyroOn) requestGyro(); }, { once: true });
+          enableSway();            // card is alive even before permission is granted
+        } else {
+          // Android / others: start straight away; watchdog switches to sway if blocked
+          startGyro();
+        }
+      }
+
+      // Don't burn battery when the card is off-screen or the tab is hidden
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          cardVisible = entries[entries.length - 1].isIntersecting; // newest entry wins
+          if (cardVisible) requestTiltFrame();
+        }, { threshold: 0.01 }).observe(holoCard);
+      }
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) requestTiltFrame(); });
+    }
+
+    /* ========================================================================
+       0C. OWNER-ONLY HERO PHOTO
+       Visitors can NOT change the photo. To use your own photo, put the image
+       file next to this HTML file (e.g. "leo.jpg") and set HERO_PHOTO_SRC below.
+       Leave it empty ('') to show the comic illustration.
+       ======================================================================== */
+    const HERO_PHOTO_SRC = '';
+
+    (function applyOwnerPhoto() {
+      if (!HERO_PHOTO_SRC) return;
+      const img = document.getElementById('customHeroPhoto');
+      img.onload = function () {
+        document.getElementById('defaultComicPortraitSvg').classList.add('hidden');
+        document.getElementById('customPhotoContainer').classList.remove('hidden');
+      };
+      img.src = HERO_PHOTO_SRC; // if the file is missing, onload never fires and the illustration stays
+    })();
+
+    /* ========================================================================
+       1. RETRO WEB AUDIO API SOUND EFFECTS ENGINE
+       ======================================================================== */
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'square', duration = 0.1, slideFreq = null, volume = 0.08) {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        if (slideFreq) {
+          osc.frequency.exponentialRampToValueAtTime(Math.max(20, slideFreq), ctx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(volume, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        // Ignore audio autoplay block until user interaction
+      }
+    }
+
+    const SFX = {
+      pop: () => playTone(520, 'triangle', 0.09, 780, 0.09),
+      laser: () => playTone(880, 'square', 0.11, 220, 0.07),
+      explosion: () => playTone(160, 'sawtooth', 0.22, 42, 0.11),
+      bounce: () => playTone(440, 'sine', 0.08, 660, 0.09),
+      jump: () => playTone(280, 'square', 0.14, 620, 0.08),
+      coin: () => {
+        playTone(987, 'square', 0.08, null, 0.07);
+        setTimeout(() => playTone(1318, 'square', 0.18, null, 0.07), 75);
+      },
+      gameover: () => {
+        playTone(320, 'sawtooth', 0.16, 240, 0.09);
+        setTimeout(() => playTone(220, 'sawtooth', 0.28, 110, 0.09), 150);
+      }
+    };
+
+    function toggleSound(event) {
+      soundEnabled = !soundEnabled;
+      document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+      document.getElementById('soundLabel').textContent = soundEnabled ? 'SFX' : 'MUTE';
+      if (soundEnabled) triggerPop(event, 'SFX ON!');
+    }
+
+    /* ========================================================================
+       2. ONOMATOPOEIA COMIC POPUP GENERATOR ("POW!", "ZAP!", "BAM!")
+       ======================================================================== */
+    const POP_COLORS = ['#FFD000', '#00E5FF', '#FF1E6E', '#B8FF00'];
+
+    function triggerPop(event, text = 'POW!') {
+      SFX.pop();
+      const el = document.createElement('div');
+      el.className = 'onomatopoeia-popup';
+      el.textContent = text;
+
+      const bg = POP_COLORS[Math.floor(Math.random() * POP_COLORS.length)];
+      el.style.backgroundColor = bg;
+      el.style.color = bg === '#FF1E6E' ? '#FFFFFF' : '#121216';
+
+      const x = event && event.clientX ? event.clientX : window.innerWidth / 2;
+      const y = event && event.clientY ? event.clientY : window.innerHeight / 2;
+      el.style.left = Math.min(window.innerWidth - 150, Math.max(16, x - 45)) + 'px';
+      el.style.top = Math.max(20, y - 32) + 'px';
+
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 860);
+    }
+
+    /* ========================================================================
+       3. MISSION ARCHIVE DATA & MODAL LOGIC
+       ======================================================================== */
+    const MISSIONS = [
+      {
+        issue: 'ISSUE #101 • EMBEDDED + TELECOM',
+        bannerClass: 'halftone-cyan',
+        title: 'SENTINEL GSM: SIM800L SMS TRANSCEIVER',
+        tags: ['C++ / ARDUINO', 'SIM800L GSM', 'UART SERIAL', 'AT COMMANDS'],
+        challenge: 'Remote field sensors and off-grid security nodes often fail when local Wi-Fi routers lose power or connectivity.',
+        solution: 'Engineered a fault-tolerant C++ state machine on Arduino interfaced with a SIM800L cellular module. Implemented non-blocking UART buffer parsing for AT+CMGF and AT+CMGR commands to reliably send and execute SMS control directives.',
+        outcome: 'Delivered sub-4-second cellular alert dispatch and remote relay actuation over standard 2G GSM networks with automated watchdog recovery.'
+      },
+      {
+        issue: 'ISSUE #102 • GAME ENGINE',
+        bannerClass: 'halftone-yellow',
+        title: 'HYPER-CANVAS ARCADE SDK',
+        tags: ['HTML5 CANVAS', 'WEB AUDIO API', '60FPS PHYSICS', 'RESPONSIVE TOUCH'],
+        challenge: 'Browser mini-games often suffer from blurry scaling on high-DPI screens, external audio loading delays, and awkward mobile controls.',
+        solution: 'Built a lightweight 2D game loop featuring dynamic container-aware canvas resizing, AABB & circle collision solvers, and a procedural Web Audio chiptune synthesizer requiring zero external MP3 assets.',
+        outcome: 'Powers the 3 playable retro games right inside this portfolio across desktop keyboards and mobile touchscreens.'
+      },
+      {
+        issue: 'ISSUE #103 • OS KERNEL',
+        bannerClass: 'halftone-pink',
+        title: 'CHRONOS CPU SCHEDULER LAB',
+        tags: ['C++ / JAVASCRIPT', 'OS ALGORITHMS', 'GANTT TIMELINE', 'METRICS'],
+        challenge: 'Understanding preemptive context switching and starvation in Round-Robin vs. Shortest Job First scheduling is difficult from static textbook tables.',
+        solution: 'Designed an interactive kernel simulation engine that steps through burst times, arrival queues, and time quantums tick-by-tick while rendering color-coded Gantt charts.',
+        outcome: 'Instant visual computation of average waiting time, turnaround time, and CPU utilization across custom process workloads.'
+      },
+      {
+        issue: 'ISSUE #104 • RISOGRAPH GRAPHICS',
+        bannerClass: 'halftone-lime',
+        title: 'INKBLAST: HALFTONE & COMIC COMPOSER',
+        tags: ['SVG ILLUSTRATION', 'POP-ART DESIGN', 'TAILWIND CSS', 'UI/UX'],
+        challenge: 'Standard developer portfolios often blend together with identical dark gradients and generic templates.',
+        solution: 'Created a custom comic-book design language combining thick ink borders, CMYK misprint shadows, interactive Ben-Day halftone waves, and dynamic onomatopoeia feedback.',
+        outcome: 'Achieved an unforgettable, tactile zine identity that turns exploring a portfolio into flipping through a collector\'s comic issue.'
+      }
+    ];
+
+    function openMissionModal(index, event) {
+      const m = MISSIONS[index];
+      if (!m) return;
+      triggerPop(event, 'OPEN ISSUE!');
+      const banner = document.getElementById('modalBanner');
+      banner.className = `${m.bannerClass} text-ink border-b-4 border-ink p-5 flex items-center justify-between`;
+      document.getElementById('modalIssueTag').textContent = m.issue;
+      document.getElementById('modalTitle').textContent = m.title;
+      document.getElementById('modalChallenge').textContent = m.challenge;
+      document.getElementById('modalSolution').textContent = m.solution;
+      document.getElementById('modalOutcome').textContent = m.outcome;
+
+      const tagsContainer = document.getElementById('modalTags');
+      tagsContainer.innerHTML = m.tags
+        .map(tag => `<span class="font-mono text-xs font-bold bg-popYellow text-ink border-2 border-ink px-2.5 py-1 rounded">${tag}</span>`)
+        .join('');
+
+      document.getElementById('missionModal').classList.remove('hidden');
+    }
+
+    function closeMissionModal(event) {
+      if (event) triggerPop(event, 'CLOSE!');
+      document.getElementById('missionModal').classList.add('hidden');
+    }
+
+    /* ========================================================================
+       4. CONTACT FORM & CLIPBOARD HELPERS
+       ======================================================================== */
+    function handleSignalSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('senderName').value.trim() || 'Hero';
+      const mission = document.getElementById('missionType').value;
+      triggerPop(event, 'TRANSMITTED!');
+      SFX.coin();
+      document.getElementById('contactForm').classList.add('hidden');
+      document.getElementById('confirmationText').textContent =
+        `Signal locked from ${name} regarding "${mission}"! Leou's HQ will respond at super-speed.`;
+      document.getElementById('signalConfirmation').classList.remove('hidden');
+    }
+
+    function resetSignalForm(event) {
+      triggerPop(event, 'READY!');
+      document.getElementById('contactForm').reset();
+      document.getElementById('signalConfirmation').classList.add('hidden');
+      document.getElementById('contactForm').classList.remove('hidden');
+    }
+
+    function copyEmail(event) {
+      triggerPop(event, 'COPIED!');
+      const tempInput = document.createElement('input');
+      tempInput.value = 'hero@leouhasan.dev';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      const toast = document.getElementById('copyToast');
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    /* ========================================================================
+       5. CYBER-COMIC ARCADE ENGINE (3 PLAYABLE MINI-GAMES)
+       ======================================================================== */
+    const arcadeCanvas = document.getElementById('arcadeCanvas');
+    const ctx = arcadeCanvas.getContext('2d', { alpha: false });
+
+    // Logical game resolution (fixed per layout) — CSS scales it, so the aspect ratio is always right.
+    let GW = 800, GH = 500;
+    let arcadePortrait = false;
+    const canvasContainer = document.getElementById('canvasContainer');
+
+    let currentGame = 'blaster'; // 'blaster' | 'smasher' | 'runner'
+    let gameRunning = false;
+    let gameAnimId = null;
+    let score = 0;
+    let lives = 3;
+    let level = 1;
+
+    // Persistent High Scores per Game
+    const HIGH_SCORE_KEY = 'leou_comic_arcade_scores_v1';
+    let highScores = { blaster: 0, smasher: 0, runner: 0 };
+    try {
+      const saved = JSON.parse(localStorage.getItem(HIGH_SCORE_KEY));
+      if (saved) highScores = { ...highScores, ...saved };
+    } catch (e) {}
+
+    const GAME_META = {
+      blaster: {
+        name: 'BUG BLASTER',
+        desc: 'Blast descending syntax bugs before they crash the mainframe! Move with ⬅️ ➡️ or Drag, Fire with SPACE or Tap!',
+        hint: 'Desktop: Arrow Keys / A-D + Space | Mobile: Arcade Buttons or Drag on Screen'
+      },
+      smasher: {
+        name: 'FIREWALL SMASHER',
+        desc: 'Smash through encrypted neon firewall blocks with your cyber-paddle! Do not let the energy orb drop!',
+        hint: 'Desktop: Arrow Keys / Mouse Move + Space | Mobile: Left/Right Buttons or Drag'
+      },
+      runner: {
+        name: 'CODE DASH',
+        desc: 'Sprint across the neon server rooftop and leap over red firewall spikes & glitch drones! Press SPACE or Tap to Jump!',
+        hint: 'Desktop: Space / Up Arrow to Jump | Mobile: Fire/Jump Button or Tap Screen'
+      }
+    };
+
+    // Input State
+    const keys = { left: false, right: false, action: false };
+    let blasterState = null;
+    let smasherState = null;
+    let runnerState = null;
+
+    function resizeArcadeCanvas() {
+      if (!canvasContainer || !arcadeCanvas) return;
+      const portrait = window.innerWidth < 640 && window.innerHeight >= window.innerWidth * 0.9;
+      const modeChanged = portrait !== arcadePortrait;
+      arcadePortrait = portrait;
+      canvasContainer.classList.toggle('portrait', portrait);
+
+      GW = portrait ? 360 : 800;
+      GH = portrait ? 480 : 500;
+
+      // Crisp on retina screens, but capped so phones stay fast
+      const dpr = Math.min(window.devicePixelRatio || 1, portrait ? 2 : 1.5);
+      arcadeCanvas.width = Math.round(GW * dpr);
+      arcadeCanvas.height = Math.round(GH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      if (modeChanged && gameRunning) {
+        // layout changed (rotation) — safest is to reload the cartridge
+        selectArcadeGame(currentGame);
+      } else if (!gameRunning) {
+        drawIdlePreview();
+      }
+    }
+
+    function updateArcadeHUD() {
+      document.getElementById('hudScore').textContent = score;
+      document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0, lives)) || '💀';
+      document.getElementById('hudLevel').textContent = level;
+      document.getElementById('arcadeHighScore').textContent = String(highScores[currentGame] || 0).padStart(4, '0');
+      document.getElementById('arcadeHighGameLabel').textContent = GAME_META[currentGame].name;
+    }
+
+    function saveHighScore() {
+      if (score > (highScores[currentGame] || 0)) {
+        highScores[currentGame] = score;
+        try {
+          localStorage.setItem(HIGH_SCORE_KEY, JSON.stringify(highScores));
+        } catch (e) {}
+      }
+      updateArcadeHUD();
+    }
+
+    function selectArcadeGame(gameKey, event) {
+      currentGame = gameKey;
+      gameRunning = false;
+      startBg();
+      if (gameAnimId) cancelAnimationFrame(gameAnimId);
+
+      if (event) triggerPop(event, GAME_META[gameKey].name + '!');
+
+      // Highlight Active Cartridge Tab
+      ['blaster', 'smasher', 'runner'].forEach(key => {
+        const btn = document.getElementById('tab-' + key);
+        if (!btn) return;
+        if (key === gameKey) {
+          btn.className = 'comic-btn bg-popYellow text-ink p-3 sm:p-4 rounded-xl text-left flex items-center justify-between';
+        } else {
+          btn.className = 'comic-btn bg-white text-ink hover:bg-popCyan p-3 sm:p-4 rounded-xl text-left flex items-center justify-between';
+        }
+      });
+
+      score = 0;
+      lives = 3;
+      level = 1;
+      updateArcadeHUD();
+
+      document.getElementById('overlayBadge').textContent = 'CARTRIDGE LOADED';
+      document.getElementById('overlayTitle').textContent = GAME_META[gameKey].name;
+      document.getElementById('overlayDesc').textContent = GAME_META[gameKey].desc;
+      document.getElementById('controlsHint').textContent = GAME_META[gameKey].hint;
+      document.getElementById('startPauseBtn').textContent = '▶ START GAME';
+      document.getElementById('arcadeOverlay').classList.remove('hidden');
+
+      drawIdlePreview();
+    }
+
+    function drawIdlePreview() {
+      const w = GW;
+      const h = GH;
+      ctx.fillStyle = '#0d0d14';
+      ctx.fillRect(0, 0, w, h);
+
+      // Retro Grid
+      ctx.strokeStyle = 'rgba(0, 229, 255, 0.16)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 32) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 32) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+    }
+
+    function startOrRestartCurrentGame(event) {
+      if (event) triggerPop(event, '1UP! GO!');
+      SFX.coin();
+      resizeArcadeCanvas();
+
+      score = 0;
+      lives = 3;
+      level = 1;
+      updateArcadeHUD();
+
+      document.getElementById('arcadeOverlay').classList.add('hidden');
+      document.getElementById('startPauseBtn').textContent = '↻ RESTART';
+
+      if (currentGame === 'blaster') initBugBlaster();
+      if (currentGame === 'smasher') initFirewallSmasher();
+      if (currentGame === 'runner') initCodeDash();
+
+      gameRunning = true;
+      arcadeLastT = 0;
+      arcadeAcc = 0;
+      if (gameAnimId) cancelAnimationFrame(gameAnimId);
+      gameAnimId = requestAnimationFrame(arcadeLoop);
+    }
+
+    function triggerGameOver() {
+      gameRunning = false;
+      startBg();
+      SFX.gameover();
+      saveHighScore();
+
+      document.getElementById('overlayBadge').textContent = 'GAME OVER • FINAL SCORE: ' + score;
+      document.getElementById('overlayTitle').textContent = 'TRY AGAIN?';
+      document.getElementById('overlayDesc').textContent =
+        `You scored ${score} PTS in ${GAME_META[currentGame].name}! High Score: ${highScores[currentGame]} PTS.`;
+      document.getElementById('arcadeOverlay').classList.remove('hidden');
+    }
+
+    /* ------------------------------------------------------------------------
+       MINI-GAME 1: BUG BLASTER (SPACE SHOOTER)
+       ------------------------------------------------------------------------ */
+    function initBugBlaster() {
+      const w = GW;
+      const h = GH;
+      blasterState = {
+        shipX: w / 2,
+        shipY: h - 38,
+        shipW: 42,
+        bullets: [],
+        bugs: [],
+        particles: [],
+        shootCooldown: 0,
+        spawnTimer: 0
+      };
+      spawnBugWave();
+    }
+
+    function spawnBugWave() {
+      const w = GW;
+      const cols = Math.min(8, Math.max(4, Math.floor(w / 85)));
+      const spacing = (w - 80) / cols;
+      for (let i = 0; i < cols; i++) {
+        blasterState.bugs.push({
+          x: 45 + i * spacing + spacing / 2,
+          y: -30 - (i % 2) * 35,
+          r: 16,
+          speed: 1.1 + level * 0.28 + Math.random() * 0.4,
+          color: i % 2 === 0 ? '#FF1E6E' : '#B8FF00',
+          wobble: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function fireBlasterLaser() {
+      if (!blasterState || blasterState.shootCooldown > 0) return;
+      blasterState.bullets.push({
+        x: blasterState.shipX,
+        y: blasterState.shipY - 18,
+        vy: -8.5
+      });
+      blasterState.shootCooldown = 12;
+      SFX.laser();
+    }
+
+    function updateAndDrawBlaster() {
+      const w = GW;
+      const h = GH;
+      const s = blasterState;
+
+      // Background
+      ctx.fillStyle = '#0d0d14';
+      ctx.fillRect(0, 0, w, h);
+
+      // Ship Movement
+      const speed = 6.5;
+      if (keys.left) s.shipX -= speed;
+      if (keys.right) s.shipX += speed;
+      s.shipX = Math.max(26, Math.min(w - 26, s.shipX));
+
+      if (s.shootCooldown > 0) s.shootCooldown--;
+      if (keys.action) fireBlasterLaser();
+
+      // Spawn next wave if cleared
+      if (s.bugs.length === 0) {
+        level++;
+        updateArcadeHUD();
+        spawnBugWave();
+      }
+
+      // Update & Draw Bullets
+      ctx.fillStyle = '#FFD000';
+      for (let i = s.bullets.length - 1; i >= 0; i--) {
+        const b = s.bullets[i];
+        b.y += b.vy;
+        ctx.fillRect(b.x - 3, b.y - 10, 6, 16);
+        if (b.y < -20) s.bullets.splice(i, 1);
+      }
+
+      // Update & Draw Bugs
+      for (let i = s.bugs.length - 1; i >= 0; i--) {
+        const bug = s.bugs[i];
+        bug.y += bug.speed;
+        bug.wobble += 0.08;
+        const drawX = bug.x + Math.sin(bug.wobble) * 14;
+
+        // Draw Bug Body
+        ctx.fillStyle = bug.color;
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(drawX, bug.y, bug.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Bug Eyes
+        ctx.fillStyle = '#121216';
+        ctx.fillRect(drawX - 7, bug.y - 4, 4, 4);
+        ctx.fillRect(drawX + 3, bug.y - 4, 4, 4);
+
+        // Check Bullet Hit
+        let hit = false;
+        for (let j = s.bullets.length - 1; j >= 0; j--) {
+          const b = s.bullets[j];
+          if (Math.hypot(drawX - b.x, bug.y - b.y) < bug.r + 8) {
+            s.bullets.splice(j, 1);
+            hit = true;
+            score += 100;
+            SFX.explosion();
+            saveHighScore();
+            for (let p = 0; p < 8; p++) {
+              s.particles.push({
+                x: drawX,
+                y: bug.y,
+                vx: (Math.random() - 0.5) * 6,
+                vy: (Math.random() - 0.5) * 6,
+                life: 22,
+                color: bug.color
+              });
+            }
+            break;
+          }
+        }
+        if (hit) {
+          s.bugs.splice(i, 1);
+          continue;
+        }
+
+        // Check Bottom Breach
+        if (bug.y > h - 18) {
+          s.bugs.splice(i, 1);
+          lives--;
+          SFX.explosion();
+          updateArcadeHUD();
+          if (lives <= 0) {
+            triggerGameOver();
+            return;
+          }
+        }
+      }
+
+      // Particles
+      for (let i = s.particles.length - 1; i >= 0; i--) {
+        const p = s.particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x - 3, p.y - 3, 6, 6);
+        if (p.life <= 0) s.particles.splice(i, 1);
+      }
+
+      // Draw Player Cyber-Ship
+      ctx.fillStyle = '#00E5FF';
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(s.shipX, s.shipY - 20);
+      ctx.lineTo(s.shipX + 22, s.shipY + 14);
+      ctx.lineTo(s.shipX, s.shipY + 6);
+      ctx.lineTo(s.shipX - 22, s.shipY + 14);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    /* ------------------------------------------------------------------------
+       MINI-GAME 2: FIREWALL SMASHER (BREAKOUT)
+       ------------------------------------------------------------------------ */
+    function initFirewallSmasher() {
+      const w = GW;
+      const h = GH;
+      const paddleW = Math.min(120, Math.max(82, w * 0.18));
+      smasherState = {
+        paddleX: w / 2 - paddleW / 2,
+        paddleW: paddleW,
+        paddleH: 14,
+        ballX: w / 2,
+        ballY: h - 55,
+        ballR: 8,
+        vx: 4.2 * (Math.random() > 0.5 ? 1 : -1),
+        vy: -4.4,
+        bricks: []
+      };
+      buildSmasherBricks();
+    }
+
+    function buildSmasherBricks() {
+      const w = GW;
+      const rows = 4;
+      const cols = Math.min(9, Math.max(5, Math.floor(w / 78)));
+      const gap = 8;
+      const brickW = (w - 40 - gap * (cols - 1)) / cols;
+      const brickH = 20;
+      const rowColors = ['#FF1E6E', '#FFD000', '#00E5FF', '#B8FF00'];
+
+      smasherState.bricks = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          smasherState.bricks.push({
+            x: 20 + c * (brickW + gap),
+            y: 36 + r * (brickH + gap),
+            w: brickW,
+            h: brickH,
+            color: rowColors[r % rowColors.length],
+            alive: true
+          });
+        }
+      }
+    }
+
+    function updateAndDrawSmasher() {
+      const w = GW;
+      const h = GH;
+      const s = smasherState;
+
+      ctx.fillStyle = '#0d0d14';
+      ctx.fillRect(0, 0, w, h);
+
+      // Paddle Movement
+      const speed = 7.5;
+      if (keys.left) s.paddleX -= speed;
+      if (keys.right) s.paddleX += speed;
+      s.paddleX = Math.max(8, Math.min(w - s.paddleW - 8, s.paddleX));
+
+      // Move Ball
+      s.ballX += s.vx;
+      s.ballY += s.vy;
+
+      // Wall Bounce
+      if (s.ballX - s.ballR < 0 || s.ballX + s.ballR > w) {
+        s.vx *= -1;
+        s.ballX = Math.max(s.ballR, Math.min(w - s.ballR, s.ballX));
+        SFX.bounce();
+      }
+      if (s.ballY - s.ballR < 0) {
+        s.vy *= -1;
+        s.ballY = s.ballR;
+        SFX.bounce();
+      }
+
+      // Paddle Bounce
+      const paddleY = h - 32;
+      if (
+        s.vy > 0 &&
+        s.ballY + s.ballR >= paddleY &&
+        s.ballY - s.ballR <= paddleY + s.paddleH &&
+        s.ballX >= s.paddleX - 4 &&
+        s.ballX <= s.paddleX + s.paddleW + 4
+      ) {
+        const hitRatio = (s.ballX - (s.paddleX + s.paddleW / 2)) / (s.paddleW / 2);
+        s.vx = hitRatio * 5.8;
+        s.vy = -Math.abs(s.vy);
+        SFX.bounce();
+      }
+
+      // Bottom Miss
+      if (s.ballY - s.ballR > h) {
+        lives--;
+        SFX.explosion();
+        updateArcadeHUD();
+        if (lives <= 0) {
+          triggerGameOver();
+          return;
+        }
+        s.ballX = w / 2;
+        s.ballY = h - 60;
+        s.vx = 4.2 * (Math.random() > 0.5 ? 1 : -1);
+        s.vy = -4.4;
+      }
+
+      // Bricks Collision & Render
+      let remaining = 0;
+      for (const b of s.bricks) {
+        if (!b.alive) continue;
+        remaining++;
+        if (
+          s.ballX + s.ballR > b.x &&
+          s.ballX - s.ballR < b.x + b.w &&
+          s.ballY + s.ballR > b.y &&
+          s.ballY - s.ballR < b.y + b.h
+        ) {
+          b.alive = false;
+          s.vy *= -1;
+          score += 50;
+          SFX.pop();
+          saveHighScore();
+          continue;
+        }
+        ctx.fillStyle = b.color;
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 1.5;
+        ctx.fillRect(b.x, b.y, b.w, b.h);
+        ctx.strokeRect(b.x, b.y, b.w, b.h);
+      }
+
+      if (remaining === 0) {
+        level++;
+        s.vy *= 1.1;
+        updateArcadeHUD();
+        buildSmasherBricks();
+      }
+
+      // Draw Paddle
+      ctx.fillStyle = '#00E5FF';
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 2;
+      ctx.fillRect(s.paddleX, paddleY, s.paddleW, s.paddleH);
+      ctx.strokeRect(s.paddleX, paddleY, s.paddleW, s.paddleH);
+
+      // Draw Energy Ball
+      ctx.fillStyle = '#FFD000';
+      ctx.beginPath();
+      ctx.arc(s.ballX, s.ballY, s.ballR, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    /* ------------------------------------------------------------------------
+       MINI-GAME 3: CODE DASH (ENDLESS RUNNER)
+       ------------------------------------------------------------------------ */
+    function initCodeDash() {
+      const h = GH;
+      runnerState = {
+        groundY: h - 42,
+        playerX: 68,
+        playerY: h - 78,
+        playerW: 32,
+        playerH: 36,
+        vy: 0,
+        grounded: true,
+        obstacles: [],
+        spawnTimer: 55,
+        frameCount: 0
+      };
+    }
+
+    function jumpCodeDash() {
+      if (!runnerState || !runnerState.grounded) return;
+      runnerState.vy = -12.8;
+      runnerState.grounded = false;
+      SFX.jump();
+    }
+
+    function updateAndDrawRunner() {
+      const w = GW;
+      const h = GH;
+      const s = runnerState;
+      s.groundY = h - 42;
+      s.frameCount++;
+
+      if (keys.action) jumpCodeDash();
+
+      // Background
+      ctx.fillStyle = '#0d0d14';
+      ctx.fillRect(0, 0, w, h);
+
+      // Cyber Floor
+      ctx.fillStyle = '#2B1966';
+      ctx.fillRect(0, s.groundY, w, h - s.groundY);
+      ctx.strokeStyle = '#B8FF00';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, s.groundY);
+      ctx.lineTo(w, s.groundY);
+      ctx.stroke();
+
+      // Physics
+      s.vy += 0.65;
+      s.playerY += s.vy;
+      if (s.playerY + s.playerH >= s.groundY) {
+        s.playerY = s.groundY - s.playerH;
+        s.vy = 0;
+        s.grounded = true;
+      }
+
+      // Spawn Obstacles
+      s.spawnTimer--;
+      if (s.spawnTimer <= 0) {
+        const isTall = Math.random() > 0.55;
+        s.obstacles.push({
+          x: w + 20,
+          w: isTall ? 24 : 30,
+          h: isTall ? 46 : 30,
+          color: isTall ? '#FF1E6E' : '#FFD000'
+        });
+        s.spawnTimer = Math.max(46, 95 - level * 5 + Math.floor(Math.random() * 35));
+      }
+
+      const runSpeed = 5.4 + level * 0.45;
+      for (let i = s.obstacles.length - 1; i >= 0; i--) {
+        const ob = s.obstacles[i];
+        ob.x -= runSpeed;
+        const obY = s.groundY - ob.h;
+
+        // Draw Hazard Spike Block
+        ctx.fillStyle = ob.color;
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 2;
+        ctx.fillRect(ob.x, obY, ob.w, ob.h);
+        ctx.strokeRect(ob.x, obY, ob.w, ob.h);
+
+        // Collision Check
+        if (
+          s.playerX + s.playerW - 6 > ob.x &&
+          s.playerX + 6 < ob.x + ob.w &&
+          s.playerY + s.playerH - 4 > obY
+        ) {
+          s.obstacles.splice(i, 1);
+          lives--;
+          SFX.explosion();
+          updateArcadeHUD();
+          if (lives <= 0) {
+            triggerGameOver();
+            return;
+          }
+          continue;
+        }
+
+        if (ob.x + ob.w < 0) {
+          s.obstacles.splice(i, 1);
+          score += 25;
+          if (score % 250 === 0) level++;
+          saveHighScore();
+        }
+      }
+
+      // Draw Hero Runner
+      ctx.fillStyle = '#00E5FF';
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 2.5;
+      ctx.fillRect(s.playerX, s.playerY, s.playerW, s.playerH);
+      ctx.strokeRect(s.playerX, s.playerY, s.playerW, s.playerH);
+
+      // Visor Eye
+      ctx.fillStyle = '#B8FF00';
+      ctx.fillRect(s.playerX + 16, s.playerY + 8, 12, 6);
+    }
+
+    // Fixed 60 updates/sec regardless of screen refresh rate (90/120/144Hz phones no longer run the game too fast)
+    const ARCADE_STEP = 1000 / 60;
+    let arcadeLastT = 0;
+    let arcadeAcc = 0;
+
+    function arcadeStep() {
+      if (currentGame === 'blaster') updateAndDrawBlaster();
+      else if (currentGame === 'smasher') updateAndDrawSmasher();
+      else if (currentGame === 'runner') updateAndDrawRunner();
+    }
+
+    function arcadeLoop(t) {
+      if (!gameRunning) return;
+      gameAnimId = requestAnimationFrame(arcadeLoop);
+
+      if (!arcadeLastT) arcadeLastT = t;
+      arcadeAcc += Math.min(t - arcadeLastT, 100); // clamp after tab switches
+      arcadeLastT = t;
+
+      let steps = 0;
+      while (arcadeAcc >= ARCADE_STEP - 2 && steps < 2 && gameRunning) {
+        arcadeStep();
+        arcadeAcc -= ARCADE_STEP;
+        steps++;
+      }
+      if (arcadeAcc > ARCADE_STEP * 2) arcadeAcc = 0; // device can't keep up: drop, don't spiral
+    }
+
+    /* ========================================================================
+       6. KEYBOARD, MOUSE & MOBILE TOUCH CONTROLS FOR ARCADE
+       ======================================================================== */
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'Space'].includes(e.code) && gameRunning) {
+        e.preventDefault();
+      }
+      if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = true;
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = true;
+      if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+        keys.action = true;
+        if (gameRunning && currentGame === 'blaster') fireBlasterLaser();
+        if (gameRunning && currentGame === 'runner') jumpCodeDash();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = false;
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = false;
+      if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') keys.action = false;
+    });
+
+    function bindHoldButton(id, keyName, onPressCallback) {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      const start = (e) => {
+        e.preventDefault();
+        try { btn.setPointerCapture(e.pointerId); } catch (_) {}
+        keys[keyName] = true;
+        if (onPressCallback) onPressCallback();
+      };
+      const end = (e) => {
+        e.preventDefault();
+        keys[keyName] = false;
+      };
+      btn.addEventListener('pointerdown', start);
+      btn.addEventListener('pointerup', end);
+      btn.addEventListener('pointercancel', end);
+      btn.addEventListener('lostpointercapture', () => { keys[keyName] = false; });
+      btn.addEventListener('contextmenu', (e) => e.preventDefault());
+    }
+
+    bindHoldButton('touchLeftBtn', 'left');
+    bindHoldButton('touchRightBtn', 'right');
+    bindHoldButton('touchActionBtn', 'action', () => {
+      if (!gameRunning) return;
+      if (currentGame === 'blaster') fireBlasterLaser();
+      if (currentGame === 'runner') jumpCodeDash();
+    });
+
+    // Direct canvas drag / mouse support (screen px -> logical game px)
+    function canvasX(clientX) {
+      const rect = arcadeCanvas.getBoundingClientRect();
+      return (clientX - rect.left) * (GW / rect.width);
+    }
+    function dragTo(clientX) {
+      const relX = canvasX(clientX);
+      if (currentGame === 'blaster' && blasterState) blasterState.shipX = relX;
+      if (currentGame === 'smasher' && smasherState) smasherState.paddleX = relX - smasherState.paddleW / 2;
+    }
+
+    arcadeCanvas.addEventListener('mousemove', (e) => {
+      if (!gameRunning) return;
+      dragTo(e.clientX);
+    });
+
+    arcadeCanvas.addEventListener('touchmove', (e) => {
+      if (!gameRunning || e.touches.length === 0) return;
+      e.preventDefault();
+      dragTo(e.touches[0].clientX);
+    }, { passive: false });
+
+    arcadeCanvas.addEventListener('touchstart', (e) => {
+      if (!gameRunning) return;
+      if (e.touches.length) dragTo(e.touches[0].clientX);
+      if (currentGame === 'blaster') fireBlasterLaser();
+      if (currentGame === 'runner') jumpCodeDash();
+    }, { passive: true });
+
+    let resizeTimer = 0;
+    function onViewportChange() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resizeBgCanvas();
+        resizeArcadeCanvas();
+        if (!gameRunning) startBg();
+      }, 120);
+    }
+    window.addEventListener('resize', onViewportChange);
+    window.addEventListener('orientationchange', onViewportChange);
+
+    // Initialize on Window Load
+    window.onload = function () {
+      resizeBgCanvas();
+      initBackgroundGlyphs();
+      startBg();
+
+      resizeArcadeCanvas();
+      selectArcadeGame('blaster');
+    };
+  </script>
+</body>
+</html>
